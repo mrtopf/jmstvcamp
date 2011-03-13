@@ -5,8 +5,6 @@ from logbook import FileHandler
 import werkzeug
 from jinja2 import Environment, PackageLoader, TemplateNotFound
 import formencode
-import locale
-locale.setlocale(locale.LC_ALL,('de_DE','UTF8'))
 
 import setup
 import users
@@ -40,11 +38,12 @@ class App(Application):
         map.connect(None, "/css/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/js/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/img/{path_info:.*}", handler=StaticHandler)
-        map.connect(None, "/register", handler=users.Register)
-        map.connect(None, "/validate", handler=users.Validate)
         map.connect(None, "/", handler=Page)
         map.connect(None, "/{page}", handler=Page)
         #self.logger = Logger('app')
+
+        users.setup_handlers(map)
+
 
 
 

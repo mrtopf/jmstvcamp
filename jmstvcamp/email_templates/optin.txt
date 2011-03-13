@@ -12,7 +12,7 @@ Daten in Ihrem Profil ergänzen.
 Ihre Zugangsdaten:
 
 E-Mail-Adresse: {{user.email}}
-Passwort: {{user.plainpw}}
+Passwort: {{pw}}
 
 Bis zum 30.4.,
 

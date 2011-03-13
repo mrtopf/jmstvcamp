@@ -9,6 +9,7 @@ from jinja2 import Environment, PackageLoader, TemplateNotFound
 
 from quantumcore.storages import AttributeMapper
 from framework.utils import get_static_urlparser
+import db
 
 def setup(**kw):
     """initialize the setup"""
@@ -25,7 +26,8 @@ def setup(**kw):
     settings.pts = Environment(loader=PackageLoader("jmstvcamp","pages"))
     settings.email_templates = Environment(loader=PackageLoader("jmstvcamp","email_templates"))
 
-    db = settings.db = pymongo.Connection()[settings.dbname]
-    settings.userdb = db[settings.usercoll]
+    settings.db = pymongo.Connection()[settings.dbname]
+    settings.userdb = settings.db[settings.usercoll]
+    settings.users = db.Users(settings)
     return settings
 

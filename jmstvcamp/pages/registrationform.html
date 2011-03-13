@@ -2,7 +2,7 @@
 {% block all %}
     <div id="registrationblock">
         <h2 style="margin-bottom: 20px" >Anmeldung</h2>
-        <form id="registrationform" action="/register" method="POST">
+        <form id="registrationform" action="/user/register" method="POST">
             <div class="field {{'error' if errors.name}}">
                 <label for="name">Mein Name*</label>
                 <input type="text" id="name" name="name" value="{{values.name|e}}" size="30" maxlength="255" autofocus>

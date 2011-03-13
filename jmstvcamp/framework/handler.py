@@ -18,23 +18,27 @@ class Handler(object):
         self.request = request
         self.settings = settings
         self.userid = None
-        if self.request.cookies.has_key("t"):
+        self.user = None
+        if self.request.cookies.has_key("u"):
             self.settings.log.debug("found token in cookie")
-            at = self.request.cookies['t']
+            at = self.request.cookies['u']
             try:
                 self.timestamp, self.userid, self.roles, self.token_attribs = auth_tkt.parse_ticket(self.settings.shared_secret, at, "127.0.0.1")
             except auth_tkt.BadTicket, e:
                 self.settings.log.error("BAD token detected: %s " %e)
                 pass
         if self.userid is not None:
-            self.user = self.settings.userdb.find_one({'_id' : self.userid})
+            self.user = self.settings.users.get_by_id(self.userid)
             if self.user is None:
                 self.settings.log.error("user in token not found: %s " %self.userid)
+            print self.user
         # TODO: set an empty cookie and redirect to homepage on errors
 
-    def set_user(self, user):
+    def get_user_cookie(self, user):
         """store a user in a cookie"""
-
+        _id = user['_id']
+        ticket = auth_tkt.AuthTicket(self.settings.shared_secret, _id, "127.0.0.1")
+        return ticket.cookie_value()
 
     def handle(self, **m):
         """handle a single request. This means checking the method to use, looking up
