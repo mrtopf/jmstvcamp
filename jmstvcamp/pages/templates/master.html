@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>JMStVCamp, 30.4.2011, Unperfekthaus, Essen</title>
+    <meta name="description" content="JMStVCamp - Moderner Jugendmedienschutz im Zeitalter digitaler Medien und Internet">
+    <meta name="author" content="Christian Scholz">
+
+    <meta property="og:title" content="JMstVCamp" /> 
+    <meta property="og:site_name" content="JMStVCamp" /> 
+    <meta property="og:type" content="website" /> 
+    <meta property="og:url" content="http://jmstvcamp.de/" /> 
+    <meta property="og:image" content="http://jmstvcamp.de/img/facebook.png" /> 
+    <meta property="og:description" content="Das JMStVCamp findet am 30.4.2011 im Unperfekthaus in Essen statt." /> 
+    <meta property="fb:admins" content="652229223" /> 
+    
+    <link rel="index" title="JMStVCamp" href="http://jmstvcamp.de/" /> 
+    <link rel="canonical" href="http://jmstvcamp.de/" /> 
+    <link rel="stylesheet" href="/css/screen.css" /> 
+
+    <script src="/js/yepnope.js"></script>
+    <script>
+        yepnope({
+          load: ['/css/fancybox.css',
+                 '/js/jquery.min.js',
+                 '/js/jquery.fancybox.min.js',
+                 ],
+          complete: function () {
+            $(document).ready(function() {
+                $("a#start-register").fancybox({
+                    'hideOnContentClick': false,
+                    'width': 600,
+                    'height' : 400,
+                    'autoDimensions' : false,
+                    'type' : 'iframe',
+                    'onComplete' : function() {
+                        $("#registrationblock").show();
+                    }
+                });
+            });
+          }
+        });
+    </script>
+</head>
+<body>
+    {% block all %}
+
+    <div id="container">
+        <nav>
+            <div id="navblock">
+                <ul id="navcontent">
+                    <li><a href="/">Startseite</a></li>
+                    <!--<li><a href="">Was ist ein Barcamp?</a></li>-->
+                    <li><a href="/wannwo.html">Wann und wo</a></li>
+                    <li><a href="/sponsoren.html">Sponsoren</a></li>
+                    <!--<li><a href="">Hotels</a></li>-->
+                    <!--<li><a href="">Anreise</a></li>-->
+                </ul>
+            </div>
+        </nav>
+        <header id="topheader">
+            <div id="headercontent">
+                <h1 id="logo"><a href="/"><img src="/img/logo.png" /></a></h1>
+            </div>
+        </header>
+
+        <div id="main">
+            <div class="page">
+                <div class="bigcolumn" id="content">
+                    {% block content %}
+                    <div id="block-welcome" class="block start">
+                        <h2>Willkommen beim JMStVCamp!</h2>
+                        <div id="introtext">
+                        Wie muss Jugendmedienschutz im Zeitalter neuer Medien aussehen? Das Scheitern der Novellierung des Jugendmedienschutz-Staatsvertrags (JMStV) als Aufhänger nehmend, wollen wir dies gemeinsam diskutieren. Auf dem JMStVCamp wollen wir die Diskussion von Grund auf neu starten, wir wollen wissen, was genau eigentlich das Problem ist, welche Fragen offen sind und ob nicht ein positiver, Chancen orientierter Jugendmedienschutz im Mittelpunkt stehen sollte. "Wir" bedeutet dabei, dass alle eingeladen sind, also Parteien jeglicher Couleur, Wissenschaftler, Medienpädagogen, Jugendschützer,Bürger, alt wie jung. 
+                        <a class="infobutton" href="more">(Weitere Informationen)</a>
+                        </div>
+
+                        <a id="start-register" href="/register" class="button register">Ich will mich anmelden!</a>
+
+                        <div id="forgotten">
+                            <a href="#" id="forgotten-link">Ich hab meine Zugangsdaten nicht mehr</a>
+                        </div>
+
+                        <div class="rows">
+                            <div class="row">
+                                r1
+                            </div>
+                            <div class="row last">
+                                r2
+                            </div>
+                        </div> <!-- rows -->
+                    </div> <!-- welcome-block -->
+                    {% endblock %}
+                </div> <!-- content -->
+                <aside>
+                    <h2>Information</h2>
+                    <div class="sideblock">
+                        <div class="sidehead">Wann?</div>
+                        <div class="sidecontent">30.4.2011</div>
+                        <div class="sidehead">Wo?</div>
+                        <div class="sidecontent">Unperfekthaus, Essen</div>
+                        <div class="sidehead">Eintritt?</div>
+                        <div class="sidecontent">frei</div>
+                        <div class="sidedetail">(aber Anmeldung erforderlich)</div>
+                    </div>
+                </aside>
+            </div> <!-- page -->
+        </div> <!-- main -->
+        <footer>
+            <div id="footercontent">
+                <a href="/impressum.html">Impressum</a>
+            </div>
+        </footer>
+    </div> <!--! end of #container -->
+    {% endblock %}
+</body>
+</html>
+

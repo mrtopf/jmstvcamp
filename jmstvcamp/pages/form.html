@@ -1,0 +1,37 @@
+{% extends "templates/master.html" %}
+{% block all %}
+    <div id="registrationblock">
+        <h2 style="margin-bottom: 20px" >Anmeldung</h2>
+        <form id="registrationform" action="/register" method="POST">
+            <div class="field {{errors">
+                <label for="name">Mein Name*</label>
+                <input type="text" id="name" name="name" value="{{values.name|e}}" size="30" maxlength="255" autofocus>
+                <span class="help">Der Name wird öffentlich in der Teilnehmerliste angezeigt.</span>
+            </div>
+            <div class="field">
+                <label for="email">Meine E-Mail-Adresse*</label>
+                <input type="text" id="email" value="{{values.email|e}}" name="email" size="30" maxlength="255">
+                <span class="help">Die E-Mail-Adresse wird nicht öffentlich angezeigt.</span>
+            </div>
+            <div class="field">
+                <label for="organization">Meine Organisation (optional)</label>
+                <input type="text" name="organization" value="{{values.organization}}" placeholder="Firma, Institution etc." id="organization" size="30" maxlength="255">
+                <span class="help">Wenn angegeben, wird diese Angabe öffentlich neben Ihrem Namen in der Teilnehmerliste angezeigt</span>
+            </div>
+            <div class="field">
+                <label for="homepage">Meine Homepage (optional)</label>
+                <input type="text" name="homepage" value="{{values.homepage|e}}" placeholder="http://" id="homepage" size="30" maxlength="255">
+                <span class="help">Wenn angegeben, wird diese Angabe öffentlich neben Ihrem Namen in der Teilnehmerliste angezeigt</span>
+            </div>
+            <div class="field buttons">
+                <input type="submit" value="Ja, ich komme!" id="button-yes" class="button yes">
+                <input type="submit" value="Ich komme vielleicht" id="button-maybe" class="button maybe">
+                <input type="submit" value="Ich komme nicht, will aber informiert werden" id="button-no" class="button no">
+            </div>
+            <div id="infotext">
+                Diese Daten werden nur zum Zwecke der Organisation des Barcamps gespeichert. Sie werden nicht an Dritte weitergegeben oder auf
+                der Website veröffentlicht. E-Mails werden nur gesendet, um über das JMStVCamp zu informieren. Ihr Name erscheint in der Teilnehmerliste.
+            </div>
+        </form>
+    </div>
+{% endblock %}

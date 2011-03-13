@@ -1,0 +1,21 @@
+Hallo {{user.name}},
+
+schön, dass Sie am JMStVCamp teilnehmen möchten. Damit wir
+aber sicherstellen können, dass Sie wirklich die richtige Person sind,
+müssten Sie noch einmal auf diesen Link klicken:
+
+{{url}}
+
+Danach sind Sie angemeldet und Sie können auf Wunsch noch weitere
+Daten in Ihrem Profil ergänzen.
+
+Ihre Zugangsdaten:
+
+E-Mail-Adresse: {{user.email}}
+Passwort: {{user.plainpw}}
+
+Bis zum 30.4.,
+
+Ihr JMStVCamp-Team!
+
+

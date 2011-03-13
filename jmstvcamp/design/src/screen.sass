@@ -1,0 +1,347 @@
+// This import applies a global reset to any page that imports this stylesheet.
+@import blueprint/reset
+
+// To configure blueprint, edit the partials/base.sass file.
+@import partials/base
+
+// Import all the default blueprint modules so that we can access their mixins.
+@import blueprint
+
+// Import the non-default scaffolding module.
+@import compass/utilities
+@import compass/css3
+@import compass/reset
+
+// colors
+
+$yes_color: #9cf
+$maybe_color: lighten(desaturate($yes_color, 30%),10%)
+$no_color: lighten(desaturate($maybe_color, 30%),10%)
+$forgot_color: #fc0
+$registerbuttoncolor: darken(#cf8, 30%)
+$registerbuttoncolor: #0cf
+
+// configuration
+
+$headfont: Arial, Helvetica, sans-serif
+
+$blueprint_font_family: Arial, Helvetica, sans-serif
+$page_width: 960px
+$main_width: 600px
+$bigcolumn_width: 600px
+$main_container_width: $main_width + 20px
+$gutter_size: 30px
+$sidebar_width: $page_width - $bigcolumn_width - $gutter_size
+$panel_width: $main_width - 20px
+
+$row_gutter: 20px
+$row_width: ($page_width - 20px - 3 * $row_gutter) / 4
+
+$box_color: #333333
+
+//Recommended Blueprint configuration with scoping and semantic layout:
+body
+  font-family: unquote("Lucida Grande"), Helvetica, Arial, sans-serif
+  font-size: 13px
+  line-height: 1.5
+  background: white image-url("bg.gif") repeat
+
+p
+  margin-bottom: 10px
+
+img
+  border-style: none
+
+a
+  color: #358
+  text-decoration: none
+
+
+header
+  display: block
+  margin: 0
+
+#headercontent, #footercontent
+  margin: 0 auto
+  width: $page_width
+
+#logo
+  padding-top: 10px
+  padding-bottom: 20px
+  margin: 0
+  
+
+h2, h3
+  font-family: $headfont
+  font-size: 22px
+  display: block
+  font-style: normal
+  font-weight: bold
+  text-shadow: none
+  text-decoration: none
+  text-transform: uppercase
+  letter-spacing: 0.053em
+  word-spacing: 0em
+  line-height: 1.2
+  color: #333
+  margin-bottom: 0px
+  border-bottom: 1px solid black
+
+h3
+  font-size: 20px
+  color: #555
+
+footer
+  display: block
+  border-top: 5px solid #333333
+  padding-top: 30px
+  margin-top: 0px
+  #footer
+    color: #000033
+
+#main
+  margin: 0
+  padding-bottom: 150px
+
+.page
+  margin: 0 auto
+  width: $page_width
+  overflow: hidden
+
+#content
+  margin-top: 20px
+  overflow: hidden
+
+nav
+  display: block
+  font-family: $headfont
+  font-size: 12px
+  font-weight: bold
+  padding: 4px 0 0 0
+  margin: 0 0 2px 0
+  background: rgba(128,128,128,0.2)
+  color: #333
+
+#navblock
+  margin: 0 auto
+  width: $page_width
+
+#navcontent
+  display: block
+  overflow: auto
+  margin: 0
+  padding: 0
+  li
+    float: left
+    list-style: none
+    text-transform: uppercase
+    margin-left: 0px
+    margin-right: 80px
+  li:hover
+    a
+      color: black
+
+//
+// big column and sidebar
+//
+
+aside
+  float: right
+  margin: 0
+  padding: 10px
+  padding-right: 0
+  padding-top: 0
+  width: $sidebar_width
+  margin-top: 20px
+
+.bigcolumn
+  width: $bigcolumn_width
+  float: left
+  margin: 0
+  padding: 0
+
+.rows
+  padding: 0
+  margin: 0
+  margin-top: 50px
+  margin-bottom: 30px
+  border-top: 1px solid #ddd
+  width: $bigcolumn_width
+  overflow: auto
+  h1
+    font-size: 19pt
+  .row
+    display: block
+    margin: 0
+    padding: 0
+    width: 280px
+    margin-right: 10px
+    float: left
+  .row.last,.bigrow.last
+    margin: 0
+  .bigrow
+    float: left
+    margin: 0
+    padding: 0
+    margin-right: $row_gutter
+    width: $row_width * 2 + $row_gutter
+
+#eintritt
+  position: relative
+  top: -30px
+  left: -30px
+  float: right
+
+#infobox
+  width: 500px
+  border: 1px solid #ddd
+  +border-radius(4px)
+  padding: 10px
+  background: white
+  +linear-gradient(color-stops(#ffffff,#e0e0e0))
+  font-family: "Yanone Kaffeesatz", Arial, sans-serif
+  font-size: 20px
+  margin-bottom: 20px
+  .label
+    display: block
+    float: left
+    font-weight: 500
+    width: 100px
+  .info
+    font-weight: 300
+    display: block
+    margin-left: 100px
+
+#gbutton
+  float: right
+
+#map_canvas
+  width: 500px
+  border: 1px solid #ddd
+  +border-radius(4px)
+  padding: 10px
+  background: white
+  +linear-gradient(color-stops(#ffffff,#e0e0e0))
+  height: 400px
+
+.sideblock
+  margin-bottom: 20px
+  +border-radius(3px)
+  padding: 4px 0
+  font-size: 18px
+  border-bottom: 1px solid #aaa
+
+  .sidehead
+    color: #068
+
+  .sidecontent
+    margin-bottom: 4px
+
+  .sidedetail
+    font-size: 10px
+   
+
+#snbuttons
+  overflow: auto
+  height: 200px
+
+.fbshare 
+  margin: 0 13px
+
+.twitter-share-button 
+  float: left
+  margin-right: 13px
+
+.sponsor
+  display: inline-block
+  padding: 4px
+  margin: 4px 4px 4px 0
+
+// form stuff
+
+#registrationform
+
+  #infotext
+    font-size: 90%
+    color: #555
+    margin: 3px
+    line-height: 2
+
+  .field
+    margin-bottom: 10px
+    padding: 5px
+
+    .help
+      display: block
+      font-size: 80%
+      color: #888
+    
+    label
+      display: block
+      font-weight: bold
+
+    #name,#email
+      margin: 2px
+      font-size: 120%
+      width: 500px
+
+    #organization, #homepage
+      width: 500px
+  .field.error
+    border: 1px solid #a00
+    background: #feb
+    label
+      color: red
+    input
+      outline-color: #f00
+
+.button
+  border: 1px solid #555
+  border-top: 1px solid #ccc
+  border-left: 1px solid #ccc
+  padding: 3px 5px
+  +linear-gradient(color-stops(rgba(255,255,255,0.2), rgba(200,200,200,0.7)))
+  cursor: pointer
+
+.button.yes
+  font-weight: bold
+  +linear-gradient(color-stops($yes_color, darken($yes_color,20%)))
+
+.button.maybe
+  +linear-gradient(color-stops($maybe_color, darken($maybe_color,20%)))
+
+.button.no
+  +linear-gradient(color-stops($no_color, darken($no_color,20%)))
+
+.button.block
+  display: inline-block
+  font-size: 110%
+  +linear-gradient(color-stops(#fff, darken(#fff,20%)))
+
+
+.button.register
+  display: inline-block
+  border: 1px solid darken($registerbuttoncolor,10%)
+  +box-shadow(0,1px,0px,rgba(0,0,0,0.1))
+  font-size: 14px
+  font-weight: bold
+  +border-radius(30px)
+  padding: 5px 12px
+  background: $registerbuttoncolor
+  +linear-gradient(color-stops($registerbuttoncolor, darken($registerbuttoncolor,20%)))
+  margin: 2px 12px 0 0
+  color: white
+  text-shadow: 0 -1px 0 #08c
+  float: left
+
+#forgotten
+  font-size: 10px
+  color: #aaa
+  display: block
+  padding-top: 20px
+
+ 
+#introtext
+  line-height: 1.8
+  margin: 10px 0
+  font-size: 13px
