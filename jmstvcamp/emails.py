@@ -40,8 +40,6 @@ class UserEMailAdapter(Adapter):
         msg['From'] = "info@jmstvcamp.de"
         msg['To'] = user['email']
 
-        # Send the message via our own SMTP server, but don't include the
-        # # envelope header.
         s = smtplib.SMTP()
         s.connect()
         s.sendmail("info@jmstvcamp.de", [user['email']], msg.as_string())

@@ -9,5 +9,6 @@ def setup_handlers(map):
         m.connect(None, '/validate', handler=validate.Validate)
         m.connect(None, '/newcode', handler=code.NewCode)
         m.connect(None, '/profile', handler=profile.Profile)
-        m.connect(None, '/{user}/profile', handler=profile.Profile)
+        m.connect(None, '/{username}/profile', handler=profile.Profile)
+        m.connect(None, '/edit', handler=profile.Edit)
 

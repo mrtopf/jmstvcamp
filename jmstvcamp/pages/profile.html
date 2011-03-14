@@ -14,5 +14,8 @@
             <div class="label">Twitter-Account:</div>
             <div class="value"><a href="http://twitter.com/{{user.twitter}}">http://twitter.com/{{user.twitter}}</a></div>
         {% endif %}
+        {% if ownprofile %}
+            <a href="/user/edit" class="button block">Profil bearbeiten</a>
+        {% endif %}
     </div>
 {% endblock %}

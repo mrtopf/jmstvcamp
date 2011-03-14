@@ -1,8 +1,8 @@
 {% extends "templates/master.html" %}
-{% block all %}
-    <div id="registrationblock">
-        <h2 style="margin-bottom: 20px" >Anmeldung</h2>
-        <form id="registrationform" action="/user/register" method="POST" class="form">
+{% block content %}
+    <div id="editform-block">
+        <h2 style="margin-bottom: 20px" >Profil bearbeiten</h2>
+        <form id="editform" action="/user/edit" method="POST" class="form">
             <div class="field {{'error' if errors.name}}">
                 <label for="name">Mein Name*</label>
                 <input type="text" id="name" name="name" value="{{values.name|e}}" size="30" maxlength="255" autofocus>
@@ -25,10 +25,11 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <div class="field buttons">
-                <button type="submit" name="attend" value="yes" id="button-yes" class="button yes">Ja, ich komme!</button>
-                <button type="submit" name="attend" value="maybe" id="button-maybe" class="button maybe">Ich komme vielleicht</button>
-                <button type="submit" name="attend" value="no" id="button-no" class="button no">Ich komme nicht, will aber informiert werden</button>
+            <div class="field {{'error' if errors.attend}}">
+                <label for="email">Mein Teilnahmestatus:</label>
+                <input type="radio" checked="{{'checked' if values.attend == 'yes'}}" name="attend" value="yes">Ja, ich komme!</input><br />
+                <input type="radio" checked="{{'checked' if values.attend == 'maybe'}}" name="attend" value="maybe">Ich komme vielleicht</input><br />
+                <input type="radio" checked="{{'checked' if values.attend == 'no'}}" name="attend" value="no">Ich komme nicht, will aber informiert werden</input><br />
             </div>
             <div id="infotext">
                 Diese Daten werden nur zum Zwecke der Organisation des Barcamps gespeichert. Sie werden nicht an Dritte weitergegeben oder auf

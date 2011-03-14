@@ -26,37 +26,6 @@ def html(method):
 
     return wrapper
 
-class jsonp(object):
-    """a decorator for converting a JSON response to JSONP in case
-    a callback is given in the request args and the type is JSON
-    """
-
-    def __init__(self, **headers):
-        self.headers = {}
-        for a,v in headers.items():
-            ps = a.split("_")
-            ps = [p.capitalize() for p in ps]
-            self.headers["-".join(ps)] = v
-
-    def __call__(self, method):
-        """takes a dict output of a handler method and returns it as JSON"""
-
-        that = self
-    
-        @functools.wraps(method)
-        def wrapper(self, *args, **kwargs):
-            # first call the original method
-            res = method(self, *args, **kwargs)
-
-            # now check if we have the content type "application/javascript"
-            if type(res) == werkzeug.Response:
-                if self.request.args.has_key("callback"):
-                    callback = self.request.args.get("callback")
-                    res.data = "%s(%s)" %(callback, res.data)
-                    res.content_type = "application/javascript"
-            return res
-        return wrapper
-
 class json(object):
     
     def __init__(self, **headers):
@@ -88,33 +57,16 @@ class json(object):
             return response
 
         return wrapper
-        
-class role(object):
-    """check if roles are present in the session"""
-    def __init__(self, *roles):
-        self.roles = roles
 
+class logged_in(object):                                                                                                                                                        
+    """check if a valid user is present"""
     def __call__(self, method):
-        """creating a wrapper to check roles. We do this as follows:
-            
-        * get the session via the access token
-        * retrieve the roles of the user from the session
-        * check if one of the roles given to the decorator is inside the session
-        """
-   
-        possible_roles = self.roles
+        """check user"""
+
         @functools.wraps(method)
         def wrapper(self, *args, **kwargs):
-            session = self.session
-            if session is None:
-                roles = []
-            else:
-                roles = session.roles
-            if len(set(possible_roles).intersection(set(roles)))==0:
-                # TODO: find a better way
-                self.settings.log.error("access for session %s not authorized: roles needed: %s, roles found: %s"
-                        %(session, possible_roles, roles))
+            if self.user is None:
                 raise werkzeug.exceptions.Unauthorized()
-                return None
             return method(self, *args, **kwargs)
         return wrapper
+
