@@ -43,7 +43,7 @@ class Edit(Handler):
 
     @logged_in()
     def get(self):
-        return self.render()
+        return self.render(values=self.user)
 
     @html
     def render(self, errors={}, values={}, state="none"):

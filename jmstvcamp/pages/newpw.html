@@ -3,7 +3,7 @@
 {% block content %}
     <div id="newcode">
         <h2 style="margin-bottom: 20px" >Neues Passwort anfordern</h2>
-        <form id="registrationform" action="/user/newpw" method="POST">
+        <form id="registrationform" action="/user/newpw" method="POST" class="form">
             <div class="field {{'error' if errors.email}}">
                 <label for="email">Bitte geben Sie die E-Mail-Adresse ein, mit der Sie sich registriert haben:</label>
                 <input type="text" id="email" value="{{values.email|e}}" name="email" size="30" maxlength="255">

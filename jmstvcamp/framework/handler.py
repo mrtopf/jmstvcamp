@@ -31,7 +31,6 @@ class Handler(object):
             self.user = self.settings.users.get_by_id(self.userid)
             if self.user is None:
                 self.settings.log.error("user in token not found: %s " %self.userid)
-            print self.user
         # TODO: set an empty cookie and redirect to homepage on errors
 
     def get_user_cookie(self, user):

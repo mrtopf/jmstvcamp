@@ -11,30 +11,61 @@
                     <span class="error">{{errors.name}}</span>
                 {% endif %}
             </div>
-            <div class="field {{'error' if errors.email}}">
-                <label for="email">Meine E-Mail-Adresse*</label>
-                <input type="text" id="email" value="{{values.email|e}}" name="email" size="30" maxlength="255">
-                <span class="help">Die E-Mail-Adresse wird nicht öffentlich angezeigt.</span>
-                {% if errors.email %}
-                    <span class="error">{{errors.email}}</span>
-                    {% if state=="created" %}
-                        <a href="sendvalidation?email={{values.email}}" class="button block">Anmelde-Mail noch einmal senden</a>
-                    {% endif %}
-                    {% if state=="live" %}
-                        <a href="sendpw?email={{values.email}}" class="button block">Ein neues Passwort zusenden</a>
-                    {% endif %}
-                {% endif %}
-            </div>
             <div class="field {{'error' if errors.attend}}">
                 <label for="email">Mein Teilnahmestatus:</label>
-                <input type="radio" checked="{{'checked' if values.attend == 'yes'}}" name="attend" value="yes">Ja, ich komme!</input><br />
-                <input type="radio" checked="{{'checked' if values.attend == 'maybe'}}" name="attend" value="maybe">Ich komme vielleicht</input><br />
-                <input type="radio" checked="{{'checked' if values.attend == 'no'}}" name="attend" value="no">Ich komme nicht, will aber informiert werden</input><br />
+                <input type="radio" {{'checked=1' if values.attend == 'yes'}} name="attend" value="yes">Ja, ich komme!</input><br />
+                <input type="radio" {{'checked' if values.attend == 'maybe'}} name="attend" value="maybe">Ich komme vielleicht</input><br />
+                <input type="radio" {{'checked' if values.attend == 'no'}} name="attend" value="no">Ich komme nicht, will aber informiert werden</input><br />
             </div>
-            <div id="infotext">
-                Diese Daten werden nur zum Zwecke der Organisation des Barcamps gespeichert. Sie werden nicht an Dritte weitergegeben oder auf
-                der Website veröffentlicht. E-Mails werden nur gesendet, um über das JMStVCamp zu informieren. Ihr Name erscheint in der Teilnehmerliste.
-            </div>
+
+            <fieldset>
+                <legend>Optionale Angaben</legend>
+                <div class="description">Die folgenden Angaben sind freiwillig und können für Personal Branding genutzt werden</div>
+
+                <div class="field {{'error' if errors.organization}}">
+                    <label for="name">Organisation</label>
+                    <input type="text" id="organization" name="organization" value="{{values.organization|e}}" size="30" maxlength="120">
+                    <span class="help">Verein, 18. Sachverständiger, Institut oder ähnliches.</span>
+                    {% if errors.organization %}
+                        <span class="error">{{errors.organization}}</span>
+                    {% endif %}
+                </div>
+
+                <div class="field {{'error' if errors.bio}}">
+                    <label for="name">Über mich</label>
+                    <textarea cols=60 rows=5 id="bio" name="bio">{{values.bio|e}}</textarea>
+                    <span class="help">Wichtige Infos, Lebensgeschichte, Rants oder ähnliches, was man noch so mitteilen will.</span>
+                    {% if errors.bio %}
+                        <span class="error">{{errors.bio}}</span>
+                    {% endif %}
+                </div>
+
+                <div class="field {{'error' if errors.twitter}}">
+                    <label for="name">Twitter-Account</label>
+                    http://twitter.com/<input type="text" id="twitter" 
+                        name="twitter" value="{{values.twitter|e}}" size="30" maxlength="30">
+                    <span class="help">Bitte geben Sie nur Ihren Account-Namen ein.</span>
+                    {% if errors.twitter %}
+                        <span class="error">{{errors.twitter}}</span>
+                    {% endif %}
+                </div>
+
+                <div class="field {{'error' if errors.homepage}}">
+                    <label for="name">Homepage</label>
+                    <input type="text" id="homepage" placeholder="http://"
+                        name="homepage" value="{{values.homepage|e}}" size="30" maxlength="255">
+                    <span class="help">Bitte geben Sie nur die volle URL ein.</span>
+                    {% if errors.homepage %}
+                        <span class="error">{{errors.homepage}}</span>
+                    {% endif %}
+                </div>
+
+            </fieldset>
+
+            <input type="submit" class="button block" value="Speichern" />
+
+
+
         </form>
     </div>
 {% endblock %}
