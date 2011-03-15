@@ -32,4 +32,31 @@ class NewCode(Handler):
         return werkzeug.redirect(location="/newcode_success.html")
 
 
+class NewPassword(Handler):
+    """send a new password to a user"""
+
+    def get(self):
+        return self.render()
+
+    @html
+    def render(self, errors={}, values={}, state="none"):
+        tmpl = self.settings.pts.get_template("newpw.html")
+        return tmpl.render(errors=errors, values=values, state=state)
+    
+    def post(self):
+        """register"""
+        try:
+            values = jmstvcamp.db.EmailSchema.to_python(self.request.form)
+        except formencode.validators.Invalid, e:
+            return self.render(errors=e.error_dict, values=self.request.form)
+
+        user = self.settings.users.get(values['email'])
+        if user is None:
+            errors = {'email' : 'Ein Benutzer mit dieser E-Mail-Adresse ist uns nicht bekannt.'}
+            return self.render(errors=errors, values=self.request.form)
+
+        self.settings.users.send_new_password(user)
+        return werkzeug.redirect(location="/newpw_success.html")
+
+
 

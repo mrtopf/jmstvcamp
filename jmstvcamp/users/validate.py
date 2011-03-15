@@ -39,7 +39,7 @@ class Validate(Handler):
             return self.wrong()
 
         # set the login cookie and redirect to the profile page
-        url = urlparse.urljoin(self.settings.virtual_host,"/user/profile")
+        url = urlparse.urljoin(self.settings.virtual_host,"/user/welcome")
         res = werkzeug.redirect(location=url)
         cv = self.get_user_cookie(user)
         res.set_cookie("u", cv)

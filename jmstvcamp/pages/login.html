@@ -1,0 +1,29 @@
+
+{% extends "templates/master.html" %}
+{% block content %}
+    <div id="login">
+        <h2 style="margin-bottom: 20px" >Ich will mich einloggen!</h2>
+        <form id="loginform" action="/login" method="POST" class="form">
+            <div class="field {{'error' if errors.email}}">
+                <label for="email">E-Mail-Adresse:</label>
+                <input type="text" id="email" value="{{values.email|e}}" name="email" size="30" maxlength="255">
+                {% if errors.email %}
+                    <span class="error">{{errors.email}}</span>
+                {% endif %}
+            </div>
+            <div class="field {{'error' if errors.password}}">
+                <label for="email">Passwort:</label>
+                <input type="password" id="password" value="" name="password" size="30" maxlength="255">
+                {% if errors.password %}
+                    <span class="error">{{errors.password}}</span>
+                {% endif %}
+            </div>
+            <div class="field buttons">
+                <input type="submit" id="button-newcode" class="button block" value="Einloggen" >
+            </div>
+            <div id="helptext">
+                <a href="/user/newpw">Ich habe mein Passwort vergessen und hätte gern ein neues</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

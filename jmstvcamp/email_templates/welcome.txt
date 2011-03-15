@@ -1,0 +1,56 @@
+Hallo {{user.name}},
+
+{% if user.attend=="yes" %}
+wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
+teilnehmen.  Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite
+anzupassen, falls Sie dies wünschen.  Sie dient dazu, dass Teilnehmer sich
+untereinander schon vor der Veranstaltung ein wenig kennenlernen können.
+
+Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Sollten
+Sie wider Erwarten doch nicht teilnehmen können, würden wir uns über eine
+Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
+einstellen können.
+{% elif user.attend=="maybe" %}
+wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
+interessiert sind und hoffen, dass Sie sich noch für eine Teilnahme entscheiden werden.  
+
+Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite anzupassen, falls Sie
+dies wünschen.  Sie dient dazu, dass Teilnehmer sich untereinander schon vor
+der Veranstaltung ein wenig kennenlernen können. 
+
+Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Wenn Sie
+sicher sind, dass Sie kommen oder aber gar nicht können, würden wir uns über
+eine Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
+einstellen können.
+{% elif user.attend=="no" %}
+schade, dass Sie am am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen nicht
+teilnehmen können, hoffen aber, dass Sie sich später doch noch für eine
+Teilnahme entscheiden werden.  
+
+Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite anzupassen, falls Sie
+dies wünschen.  Sie dient dazu, dass Teilnehmer sich untereinander schon vor
+der Veranstaltung ein wenig kennenlernen können. 
+
+Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Wenn Sie
+wider Erwarten doch teilnehmen wollen, würden wir uns über eine Änderung des
+Teilnahmestatus freuen, damit wir unsere Planungen darauf einstellen können.
+Weiterhin gibt es nur freien Eintritt für vorweg angemeldete Personen.
+{% endif %}
+Die Website des JMStVCamps mit allen Informationen finden Sie unter
+
+http://jmstvcamp.de/
+
+Weiterhin gibt es einen Twitter-Channel unter http://twitter.com/jmstvcamp
+für die alleraktuellsten Informationen.
+
+Ihre Zugangsdaten sind wie folgt:
+
+E-Mail-Adresse: {{user.email}}
+Passwort: {{pw}}
+Login unter: http://jmstvcamp.de/login
+
+Vielen Dank für Ihr Interesse,
+
+Ihr JMStVCamp-Team!
+
+

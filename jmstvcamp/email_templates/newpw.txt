@@ -1,0 +1,12 @@
+Hallo {{user.name}},
+
+Sie haben um die Zusendung eines neuen Passwortes für die Website
+des JMStVCamp gebeten. Hier sind ihre neuen Zugangsdaten:
+
+E-Mail-Adresse: {{user.email}}
+Passwort: {{pw}}
+Login unter: http://jmstvcamp.de/login
+
+Ihr JMStVCamp-Team!
+
+

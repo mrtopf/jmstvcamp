@@ -8,6 +8,7 @@ import formencode
 
 import setup
 import users
+import login
 
 class StaticHandler(Handler):
     def get(self, path_info):
@@ -35,12 +36,12 @@ class App(Application):
     
     def setup_handlers(self, map):
         """setup the mapper"""
+        map.connect(None, "/login", handler=login.Login)
         map.connect(None, "/css/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/js/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/img/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/", handler=Page)
         map.connect(None, "/{page}", handler=Page)
-        #self.logger = Logger('app')
 
         users.setup_handlers(map)
 

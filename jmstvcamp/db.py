@@ -68,6 +68,7 @@ class User(SON):
 
 
 
+
 class Users(object):
     """handle users"""
 
@@ -114,9 +115,8 @@ class Users(object):
             self.settings.log.warn("a validation code is not supposed to be sent to users with state!=created, user=%s" %user['email']) 
             return None
         code = user.create_validation_code()
-        pw = user.create_pw()
         euser = emails.UserEMailAdapter(self.settings, user)
-        euser.send_optin(pw)
+        euser.send_optin()
         user.log("validation code %s sent" %code)
         self.coll.save(user)
 
@@ -132,6 +132,12 @@ class Users(object):
             user['validationcode'] = None
             user.log("validation code checked successfully")
             self.settings.log.info("validation code for user %s checked successfully" %user['email']) 
+
+            # now send the welcome mail
+            pw = user.create_pw()
+            euser = emails.UserEMailAdapter(self.settings, user)
+            euser.send_welcome(pw)
+            user.log("welcome mail sent")
             self.coll.save(user)
             return True
         else:
@@ -139,4 +145,13 @@ class Users(object):
             settings.log.info("validation code for user %s NOT checked successfully" %user['email']) 
             return False
 
-
+    def send_new_password(self, user):
+        """create and send a new password to a user"""
+        if user['state']=="created":
+            self.settings.log.warn("a new password is not supposed to be sent to users with state==created, user=%s" %user['email']) 
+            return None
+        pw = user.create_pw()
+        euser = emails.UserEMailAdapter(self.settings, user)
+        euser.send_newpw(pw)
+        user.log("new password sent")
+        self.coll.save(user)
