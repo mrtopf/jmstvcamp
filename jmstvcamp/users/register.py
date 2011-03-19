@@ -1,33 +1,30 @@
 # encoding=latin1
 import formencode
 import werkzeug
-import copy
-import pwtools
-import uuid
-import hashlib
-import datetime
-from pymongo.son import SON
 from jmstvcamp.framework import Handler
 from jmstvcamp.framework.decorators import html
 
 formencode.api.set_stdtranslation(domain="FormEncode", languages=["de"])
 import jmstvcamp.db
 
+class RegistrationSchema(formencode.Schema):
+    name = formencode.All(formencode.validators.UnicodeString(not_empty=True))
+    email = formencode.All(formencode.validators.Email(), formencode.validators.UnicodeString(not_empty=True))
+    attend = formencode.validators.OneOf(['yes','no','maybe'])
+
+
 class Register(Handler):
     """Registration handler"""
 
-    def get(self):
-        return self.render()
+    template = "registrationform.html"
 
-    @html
-    def render(self, errors={}, values={}, state="none"):
-        tmpl = self.settings.pts.get_template("registrationform.html")
-        return tmpl.render(errors=errors, values=values, state=state)
+    def get(self):
+        return self.render(errors={}, values={}, state=None)
 
     def post(self):
         """register"""
         try:
-            values = jmstvcamp.db.RegistrationSchema.to_python(self.request.form)
+            values = RegistrationSchema.to_python(self.request.form)
         except formencode.validators.Invalid, e:
             return self.render(errors=e.error_dict, values=self.request.form)
 
@@ -38,4 +35,6 @@ class Register(Handler):
             return self.render(errors = errors, values = self.request.form, state=e.user['state'])
     
         self.settings.users.send_validation_code(user)
-        return werkzeug.redirect(location="/registrationsuccess.html")
+        return self.redirect("/registrationsuccess.html")
+
+

@@ -26,7 +26,7 @@ setup(name='jmstvcamp',
         "quantumcore.storages",
         "quantumcore.exceptions",
         "formencode",
-        "pwtools"
+        "markdown",
       ],
       entry_points="""
         [paste.app_factory]

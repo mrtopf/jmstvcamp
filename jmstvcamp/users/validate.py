@@ -17,7 +17,7 @@ class Validate(Handler):
     @html
     def wrong(self):
         """show the wrong code page"""
-        return self.settings.pts.get_template("wrongcode.html").render()
+        return self.render("wrongcode.html")
 
     def get(self):
         """check the validation code"""
@@ -40,7 +40,7 @@ class Validate(Handler):
 
         # set the login cookie and redirect to the profile page
         url = urlparse.urljoin(self.settings.virtual_host,"/user/welcome")
-        res = werkzeug.redirect(location=url)
+        res = self.redirect(url)
         cv = self.get_user_cookie(user)
         res.set_cookie("u", cv)
         return res

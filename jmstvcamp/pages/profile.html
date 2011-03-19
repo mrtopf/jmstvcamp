@@ -1,21 +1,39 @@
 {% extends "templates/master.html" %}
 {% block content %}
-    <div id="profile">
-        <h2 style="margin-bottom: 20px" >Teilnehmer: {{user.name}}</h2>
-        {% if user.organization %}
-            <div class="label">Organisation:</div>
-            <div class="value">{{user.organization}}</div>
+<div id="profile">
+
+        <div id="head">
+            <div id="name">{{user.name|e}}</div>
+            {% if user.organization %}
+                <div id="organization">{{user.organization|e}}</div>
+            {% endif %}
+        </div>
+        <hr>
+        <div id="details">
+
+            {% if user.homepage %}
+                <div id="homepage">Homepage: <a href="{{user.homepage}}">{{user.homepage|e}}</a></div>
+            {% endif %}
+
+
+            {% if user.twitter %}
+                <div id="twitter">Twitter:
+                    <a href="http://twitter.com/{{user.twitter|e}}">http://twitter.com/{{user.twitter|e}}</a>
+                </div>
+            {% endif %}
+        </div>
+
+        {% if user.bio %}
+            <hr>
+            <div id="bio">
+                <div id="biocontent">{{user.fmt_bio}}</div>
+            </div>
         {% endif %}
-        {% if user.homepage %}
-            <div class="label">Homepage:</div>
-            <div class="value">{{user.homepage}}</div>
-        {% endif %}
-        {% if user.twitter %}
-            <div class="label">Twitter-Account:</div>
-            <div class="value"><a href="http://twitter.com/{{user.twitter}}">http://twitter.com/{{user.twitter}}</a></div>
-        {% endif %}
-        {% if ownprofile %}
-            <a href="/user/edit" class="button block">Profil bearbeiten</a>
-        {% endif %}
+
     </div>
+    {% if ownprofile %}
+    <div id="editbox">
+        <a href="/user/edit" class="button block">Profil bearbeiten</a>
+    </div>
+    {% endif %}
 {% endblock %}

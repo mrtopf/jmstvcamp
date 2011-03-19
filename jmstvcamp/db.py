@@ -1,28 +1,68 @@
 # encoding=latin1
 import formencode
 import copy
-import pwtools
 import uuid
 import hashlib
 import datetime
+import markdown
 from pymongo.son import SON
 
 formencode.api.set_stdtranslation(domain="FormEncode", languages=["de"])
 
 import emails
 
+import re
+import cgi
+
+md = markdown.Markdown(safe_mode="remove")
+
+re_string = re.compile(r'(?P<htmlchars>[<&>])|(?P<space>^[ \t]+)|(?P<lineend>\r\n|\r|\n)|(?P<protocal>(^|\s)((http|ftp)://.*?))(\s|$)', re.S|re.M|re.I)
+def plaintext2html(text, tabstop=4):
+    def do_sub(m):
+        c = m.groupdict()
+        if c['htmlchars']:
+            return cgi.escape(c['htmlchars'])
+        if c['lineend']:
+            return '<br>'
+        elif c['space']:
+            t = m.group().replace('\t', '&nbsp;'*tabstop)
+            t = t.replace(' ', '&nbsp;')
+            return t
+        elif c['space'] == '\t':
+            return ' '*tabstop;
+        else:
+            url = m.group('protocal')
+            if url.startswith(' '):
+                prefix = ' '
+                url = url[1:]
+            else:
+                prefix = ''
+            last = m.groups()[-1]
+            if last in ['\n', '\r', '\r\n']:
+                last = '<br>'
+            return '%s<a href="%s">%s</a>%s' % (prefix, url, url, last)
+    return re.sub(re_string, do_sub, text)
+
+lre_string = re.compile(r'(?P<protocal>(^|\s)((http|ftp)://.*?))(\s|$)', re.S|re.M|re.I)
+def linkify(text):
+    def do_sub(m):
+        c = m.groupdict()
+        if c['protocal']:
+            url = m.group('protocal')
+            if url.startswith(' '):
+                prefix = ' '
+                url = url[1:]
+            else:
+                prefix = ''
+            last = m.groups()[-1]
+            if last in ['\n', '\r', '\r\n']:
+                last = '<br>'
+            return '%s<a href="%s">%s</a>%s' % (prefix, url, url, last)
+    return re.sub(lre_string, do_sub, text)
+
+
 class EmailSchema(formencode.Schema):
     email = formencode.All(formencode.validators.Email(), formencode.validators.UnicodeString(not_empty=True))
-
-class RegistrationSchema(formencode.Schema):
-    name = formencode.All(formencode.validators.UnicodeString(not_empty=True))
-    email = formencode.All(formencode.validators.Email(), formencode.validators.UnicodeString(not_empty=True))
-    attend = formencode.validators.OneOf(['yes','no','maybe'])
-
-class ProfileSchema(RegistrationSchema):
-    organization = formencode.All(formencode.validators.PlainText())
-    homepage = formencode.validators.URL()
-    twitter = formencode.validators.PlainText()
 
 class ValidationError(Exception):
     """raise a validation error"""
@@ -47,10 +87,16 @@ class User(SON):
 
     def create_pw(self):
         """create a password"""
-        g = pwtools.PasswordGenerator()
-        pw = g.generate()
+        pw = unicode(uuid.uuid4())[:8]
         self['password'] = hashlib.new("md5",pw).hexdigest()
         return pw
+
+    @property
+    def fmt_bio(self):
+        """convert plain text bio to HTML"""
+        a = md.convert(self['bio'])
+        print a
+        return linkify(a)
 
     def log(self, msg):
         entry = {
@@ -94,6 +140,15 @@ class Users(object):
         user = User(values)
 
         # create a password
+        self.coll.save(user)
+        return user
+
+    def save(self, user, values):
+        """save a user"""
+        for a,v in values.items():
+            if v is None:
+                v=u""
+            user[a] = v
         self.coll.save(user)
         return user
 

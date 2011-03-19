@@ -1,0 +1,70 @@
+{% extends "templates/master.html" %}
+{% block content %}
+    <div id="welcome">
+        <h2 style="margin-bottom: 20px" >Willkommen beim JMStVCamp!</h2>
+
+        {% if user.attend=="yes" %}
+        <p>
+        Wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
+        teilnehmen.  Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite
+        anzupassen, falls Sie dies wünschen.  Sie dient dazu, dass Teilnehmer sich
+        untereinander schon vor der Veranstaltung ein wenig kennenlernen können.
+        </p>
+        <p>
+        Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Sollten
+        Sie wider Erwarten doch nicht teilnehmen können, würden wir uns über eine
+        Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
+        einstellen können.
+        </p>
+        {% elif user.attend=="maybe" %}
+        <p>
+        Wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
+        interessiert sind und hoffen, dass Sie sich noch für eine Teilnahme entscheiden werden.  
+        </p>
+        <p>
+        Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite anzupassen, falls Sie
+        dies wünschen.  Sie dient dazu, dass Teilnehmer sich untereinander schon vor
+        der Veranstaltung ein wenig kennenlernen können. 
+        </p>
+        <p>
+        Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Wenn Sie
+        sicher sind, dass Sie kommen oder aber gar nicht können, würden wir uns über
+        eine Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
+        einstellen können.
+        </p>
+        {% elif user.attend=="no" %}
+        <p>
+        Schade, dass Sie am am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen nicht
+        teilnehmen können, hoffen aber, dass Sie sich später doch noch für eine
+        Teilnahme entscheiden werden.  
+        </p>
+        <p>
+        Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite anzupassen, falls Sie
+        dies wünschen.  Sie dient dazu, dass Teilnehmer sich untereinander schon vor
+        der Veranstaltung ein wenig kennenlernen können. 
+        </p>
+        <p>
+        Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Wenn Sie
+        wider Erwarten doch teilnehmen wollen, würden wir uns über eine Änderung des
+        Teilnahmestatus freuen, damit wir unsere Planungen darauf einstellen können.
+        Weiterhin gibt es nur freien Eintritt für vorweg angemeldete Personen.
+        </p>
+        {% endif %}
+
+        <h3>Zugangsdaten</h3>
+
+        <p>
+        Wir haben Ihnen soeben eine E-Mail mit Ihren Zugangsdaten zugesendet.
+        Mit diesen können Sie sich später einloggen, um Ihren Anmeldestatus zu 
+        verändern, oder aber ihr Profil zu bearbeiten.
+        </p>
+
+        <h3>Empfehlen Sie uns weiter!</h3>
+
+        <p>Wenn Sie möchten, können Sir uns per Facebook oder Twitter weiterempfehlen.
+        Klicken Sie dazu einfach auf die Buttons in der Seitenleiste.
+        </p>
+
+        <a class="button block" href="/user/profile">Ihr Profil bearbeiten</a>
+    </div>
+{% endblock %}

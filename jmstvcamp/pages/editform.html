@@ -11,19 +11,32 @@
                     <span class="error">{{errors.name}}</span>
                 {% endif %}
             </div>
-            <div class="field {{'error' if errors.attend}}">
-                <label for="email">Mein Teilnahmestatus:</label>
-                <input type="radio" {{'checked=1' if values.attend == 'yes'}} name="attend" value="yes">Ja, ich komme!</input><br />
-                <input type="radio" {{'checked' if values.attend == 'maybe'}} name="attend" value="maybe">Ich komme vielleicht</input><br />
-                <input type="radio" {{'checked' if values.attend == 'no'}} name="attend" value="no">Ich komme nicht, will aber informiert werden</input><br />
-            </div>
+            <fieldset>
+                <legend>Mein Teilnahmestatus:</legend>
+                <div class="field {{'error' if errors.attend}}">
+
+                    <input id="a-yes" type="radio" {{'checked="1"' if values.attend == 'yes'}} name="attend" value="yes" />
+                    <label class="radio" for="a-yes">Ja, ich komme!</label>
+                    <br />
+
+                    <input id="a-maybe" type="radio" {{'checked="1"' if values.attend == 'maybe'}} name="attend" value="maybe" />
+                    <label class="radio" for="a-maybe">Ich komme vielleicht</label>
+                    <br />
+
+                    <input id="a-no" type="radio" {{'checked="1"' if values.attend == 'no'}} name="attend" value="no" />
+                    <label class="radio" for="a-no">Ich komme nicht, will aber informiert werden</label>
+                    <br />
+
+                    <span class="error">{{errors.attend}}</span>
+                </div>
+            </fieldset>
 
             <fieldset>
                 <legend>Optionale Angaben</legend>
                 <div class="description">Die folgenden Angaben sind freiwillig und können für Personal Branding genutzt werden</div>
 
                 <div class="field {{'error' if errors.organization}}">
-                    <label for="name">Organisation</label>
+                    <label for="organization">Organisation</label>
                     <input type="text" id="organization" name="organization" value="{{values.organization|e}}" size="30" maxlength="120">
                     <span class="help">Verein, 18. Sachverständiger, Institut oder ähnliches.</span>
                     {% if errors.organization %}
@@ -32,8 +45,8 @@
                 </div>
 
                 <div class="field {{'error' if errors.bio}}">
-                    <label for="name">Über mich</label>
-                    <textarea cols=60 rows=5 id="bio" name="bio">{{values.bio|e}}</textarea>
+                    <label for="bio">Über mich</label>
+                    <textarea cols=60 rows=10 id="bio" name="bio">{{values.bio|e}}</textarea>
                     <span class="help">Wichtige Infos, Lebensgeschichte, Rants oder ähnliches, was man noch so mitteilen will.</span>
                     {% if errors.bio %}
                         <span class="error">{{errors.bio}}</span>
@@ -41,7 +54,7 @@
                 </div>
 
                 <div class="field {{'error' if errors.twitter}}">
-                    <label for="name">Twitter-Account</label>
+                    <label for="twitter">Twitter-Account</label>
                     http://twitter.com/<input type="text" id="twitter" 
                         name="twitter" value="{{values.twitter|e}}" size="30" maxlength="30">
                     <span class="help">Bitte geben Sie nur Ihren Account-Namen ein.</span>
@@ -51,7 +64,7 @@
                 </div>
 
                 <div class="field {{'error' if errors.homepage}}">
-                    <label for="name">Homepage</label>
+                    <label for="homepage">Homepage</label>
                     <input type="text" id="homepage" placeholder="http://"
                         name="homepage" value="{{values.homepage|e}}" size="30" maxlength="255">
                     <span class="help">Bitte geben Sie nur die volle URL ein.</span>

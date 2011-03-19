@@ -9,6 +9,7 @@ import formencode
 import setup
 import users
 import login
+import welcome
 
 class StaticHandler(Handler):
     def get(self, path_info):
@@ -17,18 +18,14 @@ class StaticHandler(Handler):
 class Page(Handler):
     """show a page"""
 
-    @html
     def get(self, page=None):
         if page is None:
             page = "index.html"
         try:
-            tmpl = self.settings.pts.get_template(page)
+            return self.render(page)
         except TemplateNotFound:
             print "not found", page
             raise werkzeug.exceptions.NotFound()
-        out = tmpl.render()
-        return out
-
 
 class App(Application):
 
@@ -37,6 +34,7 @@ class App(Application):
     def setup_handlers(self, map):
         """setup the mapper"""
         map.connect(None, "/login", handler=login.Login)
+        map.connect(None, "/welcome", handler=welcome.Welcome)
         map.connect(None, "/css/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/js/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/img/{path_info:.*}", handler=StaticHandler)

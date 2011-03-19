@@ -9,13 +9,6 @@ müssten Sie noch einmal auf diesen Link klicken:
 Danach sind Sie angemeldet und Sie können auf Wunsch noch weitere
 Daten in Ihrem Profil ergänzen.
 
-Ihre Zugangsdaten:
-
-E-Mail-Adresse: {{user.email}}
-Passwort: {{pw}}
-
-Bis zum 30.4.,
-
 Ihr JMStVCamp-Team!
 
 

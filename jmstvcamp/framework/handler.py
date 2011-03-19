@@ -1,14 +1,16 @@
 import os
-import json as simplejson
-from paste.urlparser import StaticURLParser
+import copy
 from paste.fileapp import FileApp
 import werkzeug.exceptions
 from paste.auth import auth_tkt
+from decorators import html
 
 from context import PageContext
 
 class Handler(object):
     """a request handler which is also the base class for an application"""
+
+    template="" # default template to use
     
     def __init__(self, app=None, request=None, settings={}):
         """initialize the Handler with the calling application and the request
@@ -38,6 +40,23 @@ class Handler(object):
         _id = user['_id']
         ticket = auth_tkt.AuthTicket(self.settings.shared_secret, _id, "127.0.0.1")
         return ticket.cookie_value()
+
+    @html
+    def render(self, tmplname=None, **kwargs):
+        """render a template. If the ``tmplname`` is given, it will render
+        this template otherwise take the default ``self.template``. You can
+        pass in kwargs which are then passed to the template on rendering."""
+        if tmplname is None:
+            tmplname = self.template
+        data = copy.copy(kwargs)
+        data['logged_in'] = self.user is not None
+        data['user'] = self.user
+        tmpl = self.settings.pts.get_template(tmplname)
+        return tmpl.render(**data)
+
+    def redirect(self, location):
+        """redirect to ``location``"""
+        return werkzeug.redirect(location=location)
 
     def handle(self, **m):
         """handle a single request. This means checking the method to use, looking up
@@ -117,7 +136,7 @@ class RESTfulHandler(Handler):
         if ct is None:
             ct=""
         if ct.startswith("application/json"):
-            d = simplejson.loads(self.request.data)
+            d = json.loads(self.request.data)
             at = d.get("oauth_token", None)
         else:
             # TODO: Split GET and POST!

@@ -1,20 +1,14 @@
 # encoding=latin1
+import formencode
 import werkzeug
-import copy
-import uuid
-import hashlib
-import datetime
-import urlparse
-from pymongo.son import SON
 from jmstvcamp.framework import Handler
 from jmstvcamp.framework.decorators import html, logged_in
-
-import jmstvcamp.db
 
 class Profile(Handler):
     """show a user profile"""
 
-    @html
+    template="profile.html"
+
     def get(self, username=None):
         """display a user profile"""
         ownprofile = False
@@ -31,21 +25,36 @@ class Profile(Handler):
         if self.user is not None:
             ownprofile = self.user['_id'] == user['_id']
 
-        # collect data
-        tmpl = self.settings.pts.get_template("profile.html")
-        return tmpl.render(
-                user = user, 
-                ownprofile = ownprofile)
+        return self.render(ownprofile = ownprofile)
 
+class ProfileSchema(formencode.Schema):
+    name = formencode.All(formencode.validators.UnicodeString(not_empty=True))
+    attend = formencode.validators.OneOf(['yes','no','maybe'])
+    organization = formencode.All(formencode.validators.UnicodeString())
+    homepage = formencode.validators.URL()
+    bio = formencode.validators.UnicodeString()
+    twitter = formencode.validators.UnicodeString()
 
 class Edit(Handler):
     """show the profile edit page for logged in users"""
 
+    template="editform.html"
+
     @logged_in()
     def get(self):
-        return self.render(values=self.user)
+        return self.render(errors={}, values=self.user)
 
-    @html
-    def render(self, errors={}, values={}, state="none"):
-        tmpl = self.settings.pts.get_template("editform.html")
-        return tmpl.render(errors=errors, values=values, state=state)
+    @logged_in()
+    def post(self):
+        """update profile"""
+        print self.request.form
+        try:
+            values = ProfileSchema.to_python(self.request.form)
+        except formencode.validators.Invalid, e:
+            return self.render(errors=e.error_dict, values=self.request.form)
+
+        user = self.settings.users.save(self.user, values) 
+        # TODO: Add flash message
+        return self.redirect("/user/profile")
+
+

@@ -63,8 +63,16 @@
         <header id="topheader">
             <div id="headercontent">
                 <div id="loginbox">
-                    <a href="/login">Login</a> |
-                    <a href="/user/newpw">Passwort vergessen :-(</a> 
+                    {% if logged_in %}
+                        <a href="/user/profile">{{user.name|e}}</a>|
+                        <a href="/logout">Ausloggen</a>
+                    {% else %}
+                        <a href="/login">Login</a> |
+                        <a href="/user/newpw">Passwort vergessen :-(</a> 
+                        {% endif %}<br />
+                    <div id="socialbox">
+                        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmstvcamp.de" data-text="Jetzt anmelden! Das JMStVCamp am 30.4.2011 im Unperfekthaus in Essen." data-count="horizontal" data-via="jmstvcamp" data-lang="de">Tweet</a>
+                    </div>
                 </div>
                 <h1 id="logo"><a href="/"><img src="/img/logo.png" /></a></h1>
             </div>
@@ -109,6 +117,9 @@
                         <div class="sidecontent">frei</div>
                         <div class="sidedetail">(aber Anmeldung erforderlich)</div>
                     </div>
+                    <div id="socialbar">
+                        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FJMStVCamp%2F187845504584630&amp;width=330&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=258" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:330px; height:258px;" allowTransparency="true"></iframe>
+                    </div>
                 </aside>
             </div> <!-- page -->
         </div> <!-- main -->
@@ -119,6 +130,7 @@
         </footer>
     </div> <!--! end of #container -->
     {% endblock %}
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 </body>
 </html>
 

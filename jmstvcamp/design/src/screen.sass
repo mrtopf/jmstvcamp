@@ -1,11 +1,4 @@
-// This import applies a global reset to any page that imports this stylesheet.
-@import blueprint/reset
 
-// To configure blueprint, edit the partials/base.sass file.
-@import partials/base
-
-// Import all the default blueprint modules so that we can access their mixins.
-@import blueprint
 
 // Import the non-default scaffolding module.
 @import compass/utilities
@@ -64,6 +57,9 @@ header
   #loginbox
     float: right
     font-size: 90%
+
+  #socialbox
+    float: left
 
 
 #headercontent, #footercontent
@@ -285,6 +281,10 @@ aside
       display: block
       font-weight: bold
 
+    label.radio
+      display: inline
+      font-weight: normal
+
     #name,#email
       margin: 2px
       font-size: 120%
@@ -364,3 +364,58 @@ fieldset
   .description 
     font-size: 90%
     color: #444
+
+// profile page
+#profile
+  background: rgba(0,0,0,0.1)
+  +border-radius(10px)
+  padding: 10px 5px
+  margin: 5px
+
+  div
+    padding: 0 5px
+
+  #name
+    font-weight: bold
+    text-transform: uppercase
+    border: none
+    color: #247
+    font-size: 50px
+    margin: 0
+    padding: 0
+
+  #organization
+    margin-top: -14px
+    margin-bottom: 15px
+    font-weight: bold
+    color: #367
+
+  h3
+    margin-top: 10px
+    border: none
+    font-size: 110%
+
+  #biocontent
+    font-size: 12px
+
+hr
+  margin: 17px 0 18px
+  height: 0
+  clear: both
+  border: solid #ddd
+  border-width: 1px 0 0
+  border-top: 1px solid #ccc
+  border-bottom: 1px solid #fff
+
+
+ul 
+  list-style-position: inside
+  margin-left: 0
+  padding-left: 1em
+  text-indent: -1em
+  li:before
+    content: "\00BB \0020"
+  margin: 4px 0
+
+em
+  font-weight: bold

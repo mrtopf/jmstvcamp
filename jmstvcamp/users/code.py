@@ -8,14 +8,11 @@ import jmstvcamp.db
 class NewCode(Handler):
     """validate a token"""
 
-    def get(self):
-        return self.render()
+    template="newcode.html"
 
-    @html
-    def render(self, errors={}, values={}, state="none"):
-        tmpl = self.settings.pts.get_template("newcode.html")
-        return tmpl.render(errors=errors, values=values, state=state)
-    
+    def get(self):
+        return self.render(errors={}, values={}, state=None)
+
     def post(self):
         """register"""
         try:
@@ -29,20 +26,17 @@ class NewCode(Handler):
             return self.render(errors=errors, values=self.request.form)
 
         self.settings.users.send_validation_code(user)
-        return werkzeug.redirect(location="/newcode_success.html")
+        return self.redirect("/newcode_success.html")
 
 
 class NewPassword(Handler):
     """send a new password to a user"""
 
-    def get(self):
-        return self.render()
+    template="newpw.html"
 
-    @html
-    def render(self, errors={}, values={}, state="none"):
-        tmpl = self.settings.pts.get_template("newpw.html")
-        return tmpl.render(errors=errors, values=values, state=state)
-    
+    def get(self):
+        return self.render(errors={}, values={}, state=None)
+
     def post(self):
         """register"""
         try:
@@ -56,7 +50,7 @@ class NewPassword(Handler):
             return self.render(errors=errors, values=self.request.form)
 
         self.settings.users.send_new_password(user)
-        return werkzeug.redirect(location="/newpw_success.html")
+        return self.redirect("/newpw_success.html")
 
 
 
