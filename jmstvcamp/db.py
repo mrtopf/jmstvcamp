@@ -95,7 +95,6 @@ class User(SON):
     def fmt_bio(self):
         """convert plain text bio to HTML"""
         a = md.convert(self['bio'])
-        print a
         return linkify(a)
 
     def log(self, msg):
@@ -163,6 +162,11 @@ class Users(object):
     def get_by_id(self, _id):
         """retrieve a user by code or return None"""
         return self.coll.find_one({'_id' : _id}, as_class=User)
+
+    def get_attend(self, attend="yes"):
+        """return a list by attendance status"""
+        res = self.coll.find({'attend' : attend, 'state' : 'live'}, as_class=User)
+        return res
 
     def send_validation_code(self, user):
         """create and send a validation code and a password to a user"""

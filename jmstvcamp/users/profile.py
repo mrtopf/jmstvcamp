@@ -15,6 +15,7 @@ class Profile(Handler):
         if username is None:
             # try to use the logged in user if existing
             user = self.user
+            print user
             if user is None:
                 raise werkzeug.exceptions.NotFound()
         else:

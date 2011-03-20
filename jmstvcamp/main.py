@@ -10,6 +10,7 @@ import setup
 import users
 import login
 import welcome
+import participants
 
 class StaticHandler(Handler):
     def get(self, path_info):
@@ -35,6 +36,7 @@ class App(Application):
         """setup the mapper"""
         map.connect(None, "/login", handler=login.Login)
         map.connect(None, "/welcome", handler=welcome.Welcome)
+        map.connect(None, "/teilnehmer.html", handler=participants.Participants)
         map.connect(None, "/css/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/js/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/img/{path_info:.*}", handler=StaticHandler)

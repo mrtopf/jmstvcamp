@@ -512,3 +512,15 @@ hr {
 /* line 421, ../../design/src/screen.sass */
 em {
   font-weight: bold; }
+
+/* line 426, ../../design/src/screen.sass */
+#participants .plist {
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  -o-column-count: 3;
+  column-count: 3;
+  -moz-column-rule: 1px solid #dddddd;
+  -webkit-column-rule: 1px solid #dddddd;
+  -o-column-rule: 1px solid #dddddd;
+  column-rule: 1px solid #dddddd;
+  margin-bottom: 20px; }
