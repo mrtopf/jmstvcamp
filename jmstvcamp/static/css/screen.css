@@ -192,13 +192,12 @@ aside {
   margin: 0;
   margin-top: 50px;
   margin-bottom: 30px;
-  border-top: 1px solid #dddddd;
   width: 600px;
   overflow: auto; }
-/* line 173, ../../design/src/screen.sass */
+/* line 172, ../../design/src/screen.sass */
 .rows h1 {
   font-size: 19pt; }
-/* line 175, ../../design/src/screen.sass */
+/* line 174, ../../design/src/screen.sass */
 .rows .row {
   display: block;
   margin: 0;
@@ -206,10 +205,10 @@ aside {
   width: 280px;
   margin-right: 10px;
   float: left; }
-/* line 182, ../../design/src/screen.sass */
+/* line 181, ../../design/src/screen.sass */
 .rows .row.last, .rows .bigrow.last {
   margin: 0; }
-/* line 184, ../../design/src/screen.sass */
+/* line 183, ../../design/src/screen.sass */
 .rows .bigrow {
   float: left;
   margin: 0;
@@ -217,14 +216,14 @@ aside {
   margin-right: 20px;
   width: 460px; }
 
-/* line 191, ../../design/src/screen.sass */
+/* line 190, ../../design/src/screen.sass */
 #eintritt {
   position: relative;
   top: -30px;
   left: -30px;
   float: right; }
 
-/* line 197, ../../design/src/screen.sass */
+/* line 196, ../../design/src/screen.sass */
 #infobox {
   width: 500px;
   border: 1px solid #dddddd;
@@ -242,23 +241,23 @@ aside {
   font-family: "Yanone Kaffeesatz", Arial, sans-serif;
   font-size: 20px;
   margin-bottom: 20px; }
-/* line 207, ../../design/src/screen.sass */
+/* line 206, ../../design/src/screen.sass */
 #infobox .label {
   display: block;
   float: left;
   font-weight: 500;
   width: 100px; }
-/* line 212, ../../design/src/screen.sass */
+/* line 211, ../../design/src/screen.sass */
 #infobox .info {
   font-weight: 300;
   display: block;
   margin-left: 100px; }
 
-/* line 217, ../../design/src/screen.sass */
+/* line 216, ../../design/src/screen.sass */
 #gbutton {
   float: right; }
 
-/* line 220, ../../design/src/screen.sass */
+/* line 219, ../../design/src/screen.sass */
 #map_canvas {
   width: 500px;
   border: 1px solid #dddddd;
@@ -275,7 +274,7 @@ aside {
   background-image: linear-gradient(top, #ffffff, #e0e0e0);
   height: 400px; }
 
-/* line 229, ../../design/src/screen.sass */
+/* line 228, ../../design/src/screen.sass */
 .sideblock {
   margin-bottom: 20px;
   -moz-border-radius: 3px;
@@ -287,79 +286,79 @@ aside {
   padding: 4px 0;
   font-size: 18px;
   border-bottom: 1px solid #aaaaaa; }
-/* line 236, ../../design/src/screen.sass */
+/* line 235, ../../design/src/screen.sass */
 .sideblock .sidehead {
   color: #006688; }
-/* line 239, ../../design/src/screen.sass */
+/* line 238, ../../design/src/screen.sass */
 .sideblock .sidecontent {
   margin-bottom: 4px; }
-/* line 242, ../../design/src/screen.sass */
+/* line 241, ../../design/src/screen.sass */
 .sideblock .sidedetail {
   font-size: 10px; }
 
-/* line 246, ../../design/src/screen.sass */
+/* line 245, ../../design/src/screen.sass */
 #snbuttons {
   overflow: auto;
   height: 200px; }
 
-/* line 250, ../../design/src/screen.sass */
+/* line 249, ../../design/src/screen.sass */
 .fbshare {
   margin: 0 13px; }
 
-/* line 253, ../../design/src/screen.sass */
+/* line 252, ../../design/src/screen.sass */
 .twitter-share-button {
   float: left;
   margin-right: 13px; }
 
-/* line 257, ../../design/src/screen.sass */
+/* line 256, ../../design/src/screen.sass */
 .sponsor {
   display: inline-block;
   padding: 4px;
   margin: 4px 4px 4px 0; }
 
-/* line 266, ../../design/src/screen.sass */
+/* line 265, ../../design/src/screen.sass */
 .form #infotext {
   font-size: 90%;
   color: #555555;
   margin: 3px;
   line-height: 2; }
-/* line 272, ../../design/src/screen.sass */
+/* line 271, ../../design/src/screen.sass */
 .form .field {
   margin-bottom: 10px;
   padding: 5px; }
-/* line 276, ../../design/src/screen.sass */
+/* line 275, ../../design/src/screen.sass */
 .form .field .help {
   display: block;
   font-size: 80%;
   color: #888888; }
-/* line 281, ../../design/src/screen.sass */
+/* line 280, ../../design/src/screen.sass */
 .form .field label {
   display: block;
   font-weight: bold; }
-/* line 285, ../../design/src/screen.sass */
+/* line 284, ../../design/src/screen.sass */
 .form .field label.radio {
   display: inline;
   font-weight: normal; }
-/* line 289, ../../design/src/screen.sass */
+/* line 288, ../../design/src/screen.sass */
 .form .field #name, .form .field #email {
   margin: 2px;
   font-size: 120%;
   width: 500px; }
-/* line 294, ../../design/src/screen.sass */
+/* line 293, ../../design/src/screen.sass */
 .form .field #organization, .form .field #homepage {
   width: 500px; }
-/* line 296, ../../design/src/screen.sass */
+/* line 295, ../../design/src/screen.sass */
 .form .field.error {
   border: 1px solid #aa0000;
   background: #ffeebb; }
-/* line 299, ../../design/src/screen.sass */
+/* line 298, ../../design/src/screen.sass */
 .form .field.error label {
   color: red; }
-/* line 301, ../../design/src/screen.sass */
+/* line 300, ../../design/src/screen.sass */
 .form .field.error input {
   outline-color: red; }
 
-/* line 304, ../../design/src/screen.sass */
+/* line 303, ../../design/src/screen.sass */
 .button {
   border: 1px solid #555555;
   border-top: 1px solid #cccccc;
@@ -370,26 +369,26 @@ aside {
   background-image: linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(200, 200, 200, 0.7));
   cursor: pointer; }
 
-/* line 312, ../../design/src/screen.sass */
+/* line 311, ../../design/src/screen.sass */
 .button.yes {
   font-weight: bold;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #99ccff), color-stop(100%, #3399ff));
   background-image: -moz-linear-gradient(top, #99ccff, #3399ff);
   background-image: linear-gradient(top, #99ccff, #3399ff); }
 
-/* line 316, ../../design/src/screen.sass */
+/* line 315, ../../design/src/screen.sass */
 .button.maybe {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d4e5f7), color-stop(100%, #7db2e8));
   background-image: -moz-linear-gradient(top, #d4e5f7, #7db2e8);
   background-image: linear-gradient(top, #d4e5f7, #7db2e8); }
 
-/* line 319, ../../design/src/screen.sass */
+/* line 318, ../../design/src/screen.sass */
 .button.no {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #b8cce0));
   background-image: -moz-linear-gradient(top, #ffffff, #b8cce0);
   background-image: linear-gradient(top, #ffffff, #b8cce0); }
 
-/* line 322, ../../design/src/screen.sass */
+/* line 321, ../../design/src/screen.sass */
 .button.block {
   display: inline-block;
   font-size: 110%;
@@ -397,7 +396,7 @@ aside {
   background-image: -moz-linear-gradient(top, #ffffff, #cccccc);
   background-image: linear-gradient(top, #ffffff, #cccccc); }
 
-/* line 328, ../../design/src/screen.sass */
+/* line 327, ../../design/src/screen.sass */
 .button.register {
   display: inline-block;
   border: 1px solid #00a3cc;
@@ -423,35 +422,35 @@ aside {
   text-shadow: 0 -1px 0 #0088cc;
   float: left; }
 
-/* line 343, ../../design/src/screen.sass */
+/* line 342, ../../design/src/screen.sass */
 #forgotten {
   font-size: 10px;
   color: #aaaaaa;
   display: block;
   padding-top: 20px; }
 
-/* line 350, ../../design/src/screen.sass */
+/* line 349, ../../design/src/screen.sass */
 #introtext {
   line-height: 1.8;
   margin: 10px 0;
   font-size: 13px; }
 
-/* line 355, ../../design/src/screen.sass */
+/* line 354, ../../design/src/screen.sass */
 fieldset {
   border: 1px solid #aaaaaa;
   padding: 5px;
   margin: 3px; }
-/* line 360, ../../design/src/screen.sass */
+/* line 359, ../../design/src/screen.sass */
 fieldset legend {
   font-weight: bold;
   background: white;
   padding: 4px; }
-/* line 365, ../../design/src/screen.sass */
+/* line 364, ../../design/src/screen.sass */
 fieldset .description {
   font-size: 90%;
   color: #444444; }
 
-/* line 370, ../../design/src/screen.sass */
+/* line 369, ../../design/src/screen.sass */
 #profile {
   background: rgba(0, 0, 0, 0.1);
   -moz-border-radius: 10px;
@@ -462,10 +461,10 @@ fieldset .description {
   border-radius: 10px;
   padding: 10px 5px;
   margin: 5px; }
-/* line 376, ../../design/src/screen.sass */
+/* line 375, ../../design/src/screen.sass */
 #profile div {
   padding: 0 5px; }
-/* line 379, ../../design/src/screen.sass */
+/* line 378, ../../design/src/screen.sass */
 #profile #name {
   font-weight: bold;
   text-transform: uppercase;
@@ -474,32 +473,32 @@ fieldset .description {
   font-size: 50px;
   margin: 0;
   padding: 0; }
-/* line 388, ../../design/src/screen.sass */
+/* line 387, ../../design/src/screen.sass */
 #profile #organization {
   margin-top: -14px;
   margin-bottom: 15px;
   font-weight: bold;
   color: #336677; }
-/* line 394, ../../design/src/screen.sass */
+/* line 393, ../../design/src/screen.sass */
 #profile h3 {
   margin-top: 10px;
   border: none;
   font-size: 110%; }
-/* line 399, ../../design/src/screen.sass */
+/* line 398, ../../design/src/screen.sass */
 #profile #biocontent {
   font-size: 12px; }
-/* line 402, ../../design/src/screen.sass */
+/* line 401, ../../design/src/screen.sass */
 #profile ul {
   list-style-position: inside;
   margin-left: 0;
   padding-left: 1em;
   text-indent: -1em;
   margin: 4px 0; }
-/* line 407, ../../design/src/screen.sass */
+/* line 406, ../../design/src/screen.sass */
 #profile ul li:before {
   content: "\00BB \0020"; }
 
-/* line 411, ../../design/src/screen.sass */
+/* line 410, ../../design/src/screen.sass */
 hr {
   margin: 17px 0 18px;
   height: 0;
@@ -509,11 +508,11 @@ hr {
   border-top: 1px solid #cccccc;
   border-bottom: 1px solid white; }
 
-/* line 421, ../../design/src/screen.sass */
+/* line 420, ../../design/src/screen.sass */
 em {
   font-weight: bold; }
 
-/* line 426, ../../design/src/screen.sass */
+/* line 425, ../../design/src/screen.sass */
 #participants .plist {
   -moz-column-count: 3;
   -webkit-column-count: 3;
@@ -524,3 +523,36 @@ em {
   -o-column-rule: 1px solid #dddddd;
   column-rule: 1px solid #dddddd;
   margin-bottom: 20px; }
+
+/* line 432, ../../design/src/screen.sass */
+h4 {
+  font-size: 20px;
+  color: #334455;
+  border-bottom: 1px solid #cccccc; }
+
+/* line 437, ../../design/src/screen.sass */
+.tweets .tweet {
+  margin: 0;
+  padding: 0;
+  width: 280px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  color: #333333;
+  overflow: auto; }
+/* line 446, ../../design/src/screen.sass */
+.tweets .tweet .tweet_avatar {
+  float: left;
+  padding: 1px;
+  margin-right: 4px; }
+/* line 451, ../../design/src/screen.sass */
+.tweets .tweet .tweet-content {
+  margin-left: 60px; }
+/* line 453, ../../design/src/screen.sass */
+.tweets .tweet .tweet_time {
+  display: block;
+  color: #666666; }
+/* line 456, ../../design/src/screen.sass */
+.tweets .tweet .tweet_user {
+  font-weight: bold;
+  font-size: 11px;
+  display: block; }

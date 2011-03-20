@@ -26,6 +26,7 @@
           load: ['/css/fancybox.css',
                  '/js/jquery.min.js',
                  '/js/jquery.fancybox.min.js',
+                 '/js/jquery.tweet.js'
                  ],
           complete: function () {
             $(document).ready(function() {
@@ -39,6 +40,20 @@
                         $("#registrationblock").show();
                     }
                 });
+                $("#t_jmstvcamp").tweet({
+                    query: 'jmstvcamp',
+                    count: 5,
+                    avatar_size: 48,
+                    refresh_interval: 5,
+                    template: "<div class='tweet'>{avatar}<div class='tweet-content'>{user}{join}{text}{time}</div></div>",
+                })
+                $("#t_jmstv").tweet({
+                    query: 'jmstv',
+                    count: 5,
+                    avatar_size: 48,
+                    refresh_interval: 5,
+                    template: "<div class='tweet'>{avatar}<div class='tweet-content'>{user}{join}{text}{time}</div></div>",
+                })
             });
           }
         });
@@ -95,10 +110,12 @@
 
                         <div class="rows">
                             <div class="row">
-                                r1
+                                <h4>Tweets zu #jmstvcamp</h4>
+                                <div class="tweets" id="t_jmstvcamp"></div>
                             </div>
                             <div class="row last">
-                                r2
+                                <h4>Tweets zu #jmstv</h4>
+                                <div class="tweets" id="t_jmstv"></div>
                             </div>
                         </div> <!-- rows -->
                     </div> <!-- welcome-block -->
