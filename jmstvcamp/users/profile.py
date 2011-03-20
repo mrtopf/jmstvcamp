@@ -15,7 +15,6 @@ class Profile(Handler):
         if username is None:
             # try to use the logged in user if existing
             user = self.user
-            print user
             if user is None:
                 raise werkzeug.exceptions.NotFound()
         else:
@@ -48,7 +47,6 @@ class Edit(Handler):
     @logged_in()
     def post(self):
         """update profile"""
-        print self.request.form
         try:
             values = ProfileSchema.to_python(self.request.form)
         except formencode.validators.Invalid, e:

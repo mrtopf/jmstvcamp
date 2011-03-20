@@ -1,0 +1,31 @@
+{% extends "templates/master.html" %}
+{% block content %}
+    <div id="contact">
+        <h2 style="margin-bottom: 20px" >Kontakt</h2>
+        <div class="desc">
+            Sie haben eine Frage, Anmerkung oder wollen Hilfe anbieten? Dann tragen
+            Sie einfach Ihre Nachricht unten ein und wir werden sie baldmöglichst 
+            beantworten.
+        </div>
+
+        <form id="contactform" action="/kontakt.html" method="POST" class="form">
+            <div class="field {{'error' if errors.email}}">
+                <label for="email">Ihre E-Mail-Adresse:</label>
+                <input type="text" id="email" value="{{values.email|e}}" name="email" size="30" maxlength="255">
+                {% if errors.email %}
+                    <span class="error">{{errors.email}}</span>
+                {% endif %}
+            </div>
+            <div class="field {{'error' if errors.content}}">
+                <label for="content">Ihre Nachricht:</label>
+                <textarea id="content" name="content" rows="10" cols="60">{{values.content|e}}</textarea>
+                {% if errors.content %}
+                    <span class="error">{{errors.content}}</span>
+                {% endif %}
+            </div>
+            <div class="field buttons">
+                <input type="submit" class="button block" value="Absenden">
+            </div>
+        </form>
+    </div>
+{% endblock %}

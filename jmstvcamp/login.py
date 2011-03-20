@@ -47,11 +47,27 @@ class Login(Handler):
         if not user.checkpw(values['password']):
             return self.error("password", "Dieses Passwort ist leider falsch.", values)
 
-        print user
         # user ok, log him in.
         url = urlparse.urljoin(self.settings.virtual_host,"/user/profile")
         res = werkzeug.redirect(location=url)
         cv = self.get_user_cookie(user)
-        print cv
         res.set_cookie("u", cv)
         return res
+
+class Logout(Handler):
+    """log the user out (= clear cookie)"""
+
+    def get(self):
+        """logout"""
+        url = urlparse.urljoin(self.settings.virtual_host,"/")
+        res = werkzeug.redirect(location=url)
+        res.delete_cookie("u")
+        return res
+
+
+
+
+
+
+
+
