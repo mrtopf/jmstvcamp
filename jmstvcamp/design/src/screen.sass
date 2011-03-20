@@ -55,12 +55,7 @@ header
   margin: 0
 
   #loginbox
-    float: right
     font-size: 90%
-
-  #socialbox
-    float: left
-
 
 #headercontent, #footercontent
   margin: 0 auto
@@ -70,6 +65,11 @@ header
   padding-top: 10px
   padding-bottom: 20px
   margin: 0
+  float: left
+  width: $bigcolumn_width
+
+#socialbox
+  margin-top: 10px
   
 
 h2, h3
@@ -86,10 +86,10 @@ h2, h3
   line-height: 1.2
   color: #333
   margin-bottom: 0px
-  border-bottom: 1px solid black
+  margin-top: 10px
 
 h3
-  font-size: 20px
+  font-size: 14px
   color: #555
 
 footer
@@ -97,12 +97,15 @@ footer
   border-top: 5px solid #333333
   padding-top: 30px
   margin-top: 0px
-  #footer
-    color: #000033
+  margin-bottom: 20px
+  font-size: 80%
+  #footercontent
+    color: #555
 
 #main
   margin: 0
   padding-bottom: 150px
+  background: url(/img/fleck.png) no-repeat top left 
 
 .page
   margin: 0 auto
@@ -156,6 +159,9 @@ aside
   width: $sidebar_width
   margin-top: 20px
 
+aside#loginbox
+  margin-top: 0
+
 .bigcolumn
   width: $bigcolumn_width
   float: left
@@ -165,7 +171,7 @@ aside
 .rows
   padding: 0
   margin: 0
-  margin-top: 50px
+  margin-top: 60px
   margin-bottom: 30px
   width: $bigcolumn_width
   overflow: auto
@@ -230,7 +236,6 @@ aside
   +border-radius(3px)
   padding: 4px 0
   font-size: 18px
-  border-bottom: 1px solid #aaa
 
   .sidehead
     color: #068
@@ -285,7 +290,7 @@ aside
       display: inline
       font-weight: normal
 
-    #name,#email
+    #name,#email,#password
       margin: 2px
       font-size: 120%
       width: 500px
@@ -299,6 +304,8 @@ aside
       color: red
     input
       outline-color: #f00
+    .error
+      display: block
 
 .button
   border: 1px solid #555
@@ -326,14 +333,18 @@ aside
 
 .button.register
   display: inline-block
-  border: 1px solid darken($registerbuttoncolor,10%)
-  +box-shadow(0,1px,0px,rgba(0,0,0,0.1))
-  font-size: 14px
+  font-size: 17px
   font-weight: bold
-  +border-radius(30px)
-  padding: 5px 12px
-  background: $registerbuttoncolor
-  +linear-gradient(color-stops($registerbuttoncolor, darken($registerbuttoncolor,20%)))
+  padding: 15px 15px
+  background: url(/img/button.png) no-repeat
+  border: none
+  width: 270px
+  height: 100px
+  //border: 1px solid darken($registerbuttoncolor,10%)
+  //+box-shadow(0,1px,0px,rgba(0,0,0,0.1))
+  //+border-radius(30px)
+  //background: $registerbuttoncolor
+  //+linear-gradient(color-stops($registerbuttoncolor, darken($registerbuttoncolor,20%)))
   margin: 2px 12px 0 0
   color: white
   text-shadow: 0 -1px 0 #08c
@@ -459,4 +470,15 @@ h4
       display: block
 
 
+.desc
+  color: #333
+  padding: 5px
 
+#loginform
+  padding: 5px
+  margin-bottom: 30px
+  #helptext
+    padding: 5px
+
+#sponsoren
+  margin-top: 30px

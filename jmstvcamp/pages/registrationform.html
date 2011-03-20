@@ -1,7 +1,12 @@
 {% extends "templates/master.html" %}
-{% block all %}
+{% block content %}
     <div id="registrationblock">
-        <h2 style="margin-bottom: 20px" >Anmeldung</h2>
+        <h2 style="margin-bottom: 20px" >Registrierung</h2>
+        <div class="desc">
+            Um am JMStVCamp teilnehmen zu können, müssen Sie sich zunächst registrieren.
+            Sie erhalten dann einen Zugang und sind verbindlich angemeldet. Geben Sie dazu unten
+            bitte Ihren Namen und Ihre E-Mail-Adresse an.
+        </div>
         <form id="registrationform" action="/user/register" method="POST" class="form">
             <div class="field {{'error' if errors.name}}">
                 <label for="name">Mein Name*</label>
@@ -18,10 +23,10 @@
                 {% if errors.email %}
                     <span class="error">{{errors.email}}</span>
                     {% if state=="created" %}
-                        <a href="sendvalidation?email={{values.email}}" class="button block">Anmelde-Mail noch einmal senden</a>
+                        <a href="/user/newcode?email={{values.email}}" class="button block">Anmelde-Mail noch einmal senden</a>
                     {% endif %}
                     {% if state=="live" %}
-                        <a href="sendpw?email={{values.email}}" class="button block">Ein neues Passwort zusenden</a>
+                        <a href="/user/newpw?email={{values.email}}" class="button block">Ein neues Passwort zusenden</a>
                     {% endif %}
                 {% endif %}
             </div>

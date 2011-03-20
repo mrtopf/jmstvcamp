@@ -30,7 +30,7 @@
                  ],
           complete: function () {
             $(document).ready(function() {
-                $("a#start-register").fancybox({
+                $("a#nostart-register").fancybox({
                     'hideOnContentClick': false,
                     'width': 600,
                     'height' : 400,
@@ -68,26 +68,30 @@
                 <ul id="navcontent">
                     <li><a href="/">Startseite</a></li>
                     <li><a href="/wannwo.html">Wann und wo</a></li>
-                    <li><a href="/sponsoren.html">Sponsoren</a></li>
                     <li><a href="/teilnehmer.html">Teilnehmer</a></li>
                 </ul>
             </div>
         </nav>
         <header id="topheader">
             <div id="headercontent">
-                <div id="loginbox">
+                <h1 id="logo"><a href="/"><img src="/img/logo.png" /></a></h1>
+                <aside id="loginbox">
                     {% if logged_in %}
                         <a href="/user/profile">{{user.name|e}}</a>|
                         <a href="/logout">Ausloggen</a>
                     {% else %}
                         <a href="/login">Login</a> |
-                        <a href="/user/newpw">Passwort vergessen :-(</a> 
+                        <a href="/user/register">Registrieren</a> 
                         {% endif %}<br />
                     <div id="socialbox">
-                        <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmstvcamp.de" data-text="Jetzt anmelden! Das JMStVCamp am 30.4.2011 im Unperfekthaus in Essen." data-count="horizontal" data-via="jmstvcamp" data-lang="de">Tweet</a>
+                        <div id="tweetbox">
+                            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmstvcamp.de" data-text="Jetzt anmelden! Das JMStVCamp am 30.4.2011 im Unperfekthaus in Essen." data-count="vertical" data-via="jmstvcamp" data-lang="de">Tweet</a>
+                        </div>
+                        <div id="likebox">
+                            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fjmstvcamp.de&amp;layout=box_count&amp;show_faces=false&amp;width=55&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:65px;" allowTransparency="true"></iframe>
+                        </div>
                     </div>
-                </div>
-                <h1 id="logo"><a href="/"><img src="/img/logo.png" /></a></h1>
+                </aside>
             </div>
         </header>
 
@@ -99,14 +103,11 @@
                         <h2>Willkommen beim JMStVCamp!</h2>
                         <div id="introtext">
                         Wie muss Jugendmedienschutz im Zeitalter neuer Medien aussehen? Das Scheitern der Novellierung des Jugendmedienschutz-Staatsvertrags (JMStV) als Aufhänger nehmend, wollen wir dies gemeinsam diskutieren. Auf dem JMStVCamp wollen wir die Diskussion von Grund auf neu starten, wir wollen wissen, was genau eigentlich das Problem ist, welche Fragen offen sind und ob nicht ein positiver, Chancen orientierter Jugendmedienschutz im Mittelpunkt stehen sollte. "Wir" bedeutet dabei, dass alle eingeladen sind, also Parteien jeglicher Couleur, Wissenschaftler, Medienpädagogen, Jugendschützer,Bürger, alt wie jung. 
-                        <a class="infobutton" href="more">(Weitere Informationen)</a>
                         </div>
-
-                        <a id="start-register" href="/user/register" class="button register">Ich will mich anmelden!</a>
-
-                        <div id="forgotten">
-                            <a href="#" id="forgotten-link">Ich hab meine Zugangsdaten nicht mehr</a>
-                        </div>
+    
+                        {% if not logged_in %}
+                            <a id="start-register" style="cursor: pointer" href="/user/register" class=""><img src="/img/button-register.png" /></a>
+                        {% endif %}
 
                         <div class="rows">
                             <div class="row">
@@ -120,6 +121,24 @@
                         </div> <!-- rows -->
                     </div> <!-- welcome-block -->
                     {% endblock %}
+                    <div id="sponsoren">
+                        <h4>Wir danken unseren Sponsoren:</h4>
+                        <a class="sponsor" href="http://jugendonline.eu/">
+                            <img src="/img/sponsoren/ijab.png" />
+                        </a>
+                        <a class="sponsor" href="http://gruene-nrw.de/">
+                            <img src="/img/sponsoren/gruene.png" />
+                        </a>
+                        <a class="sponsor" href="http://wiki.piratenpartei.de/NRW">
+                            <img src="/img/sponsoren/piraten.png" />
+                        </a>
+                        <a class="sponsor" href="http://www.nrwjusos.de/">
+                            <img src="/img/sponsoren/jusos.png" />
+                        </a>
+                        <a class="sponsor" href="http://comlounge.net/">
+                            <img src="/img/sponsoren/comlounge.png" />
+                        </a>
+                    </div>
                 </div> <!-- content -->
                 <aside>
                     <h2>Information</h2>
@@ -130,7 +149,7 @@
                         <div class="sidecontent">Unperfekthaus, Essen</div>
                         <div class="sidehead">Eintritt?</div>
                         <div class="sidecontent">frei</div>
-                        <div class="sidedetail">(aber Anmeldung erforderlich)</div>
+                        <div class="sidedetail">(aber Registrierung erforderlich)</div>
                     </div>
                     <div id="socialbar">
                         <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FJMStVCamp%2F187845504584630&amp;width=330&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=258" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:330px; height:258px;" allowTransparency="true"></iframe>
@@ -140,7 +159,9 @@
         </div> <!-- main -->
         <footer>
             <div id="footercontent">
-                <a href="/impressum.html">Impressum</a>
+                <a href="/impressum.html">Impressum</a> |
+                <a href="/datenschutz.html">Datenschutz</a> |
+                Diese Website wird betrieben von der <a href="http://comlounge.net">COM.lounge GmbH</a>
             </div>
         </footer>
     </div> <!--! end of #container -->

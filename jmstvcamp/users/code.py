@@ -11,7 +11,21 @@ class NewCode(Handler):
     template="newcode.html"
 
     def get(self):
+        if self.request.args.has_key("email"):
+            try:
+             values = jmstvcamp.db.EmailSchema.to_python(self.request.args)
+            except formencode.validators.Invalid, e:
+                return self.render(errors=e.error_dict, values=self.request.form)
+            return self.process(values)
         return self.render(errors={}, values={}, state=None)
+
+    def process(self, values):
+        user = self.settings.users.get(values['email'])
+        if user is None:
+            errors = {'email' : 'Ein Benutzer mit dieser E-Mail-Adresse ist uns nicht bekannt.'}
+            return self.render(errors=errors, values=self.request.form)
+        self.settings.users.send_validation_code(user)
+        return self.redirect("/newcode_success.html")
 
     def post(self):
         """register"""
@@ -19,14 +33,7 @@ class NewCode(Handler):
             values = jmstvcamp.db.EmailSchema.to_python(self.request.form)
         except formencode.validators.Invalid, e:
             return self.render(errors=e.error_dict, values=self.request.form)
-
-        user = self.settings.users.get(values['email'])
-        if user is None:
-            errors = {'email' : 'Ein Benutzer mit dieser E-Mail-Adresse ist uns nicht bekannt.'}
-            return self.render(errors=errors, values=self.request.form)
-
-        self.settings.users.send_validation_code(user)
-        return self.redirect("/newcode_success.html")
+        return self.process(values)
 
 
 class NewPassword(Handler):

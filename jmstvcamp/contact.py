@@ -32,7 +32,6 @@ class Contact(Handler):
         msg['Subject'] = "Nachricht zum JMStVCamp"
         msg['To'] = self.settings.fromaddr
         msg['From'] = values['email']
-        print msg.as_string()
 
         s = smtplib.SMTP()
         s.connect()
