@@ -2,19 +2,19 @@
 {% block content %}
 <div id="infobox">
     <div id="gbutton">
-        <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=PythonCamp%202011&dates=20110416T070000Z/20110417T150000Z&details=Siehe%20http%3A%2F%2Fpythoncamp.de&location=GFU%20Cyrus%20AG%2C%20Am%20Grauen%20Stein%2027%2C%20K%C3%B6ln&trp=false&sprop=http%3A%2F%2Fpythoncamp.de&sprop=name:PythonCamp%202011" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6_de.gif" border=0></a>
+        <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=JMStVCamp&dates=20110430/20110431&details=&location=Unperfekthaus%20Essen&trp=false&sprop=http%3A%2F%2Fjmstvcamp.de&sprop=name:JMStVCamp" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6_de.gif" border=0></a>
     </div>
     <div class="label">Beginn</div>
-    <div class="info">16. April 2011, 9 Uhr</div>
+    <div class="info">30. April 2011, 10 Uhr</div>
 
     <div class="label">Ende</div>
-    <div class="info">17. April 2011, 17 Uhr</div>
+    <div class="info">30. April 2011, 18 Uhr</div>
 
     <div class="label">Wo?</div>
     <div class="info">
-        <a href="http://www.gfu.net/">GFU Cyrus AG</a><br>
-        Am Grauen Stein 27<br>
-        51105 Köln-Deutz<br>
+        <a href="http://www.unperfekthaus.de/">Unperfekthaus Essen</a><br>
+        Friedrich-Ebert-Str. 18<br>
+        45127 Essen-City<br>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
-        var address="Am Grauen Stein 27, 51105 Köln-Deutz"
+        var address="Friedrich-Ebert-Str. 18, 45127 Essen-City"
         function init() {
             var geocoder = new google.maps.Geocoder();
             if (geocoder) {
@@ -39,7 +39,6 @@
         }
         
         function show(latlng) {
-            //var latlng = new google.maps.LatLng(-34.397, 150.644);
             var myOptions = {
                 zoom: 15,
                 center: latlng,
@@ -51,9 +50,7 @@
                 position: latlng
             });
         }
-        head.ready(function() {
-                init();
-        })
+        init();
     </script>
 {% endblock %}
 

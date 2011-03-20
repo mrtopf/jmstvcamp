@@ -132,6 +132,7 @@ nav
   overflow: auto
   margin: 0
   padding: 0
+  text-indent: 0
   li
     float: left
     list-style: none
@@ -398,6 +399,15 @@ fieldset
   #biocontent
     font-size: 12px
 
+  ul 
+    list-style-position: inside
+    margin-left: 0
+    padding-left: 1em
+    text-indent: -1em
+    li:before
+      content: "\00BB \0020"
+    margin: 4px 0
+
 hr
   margin: 17px 0 18px
   height: 0
@@ -407,15 +417,6 @@ hr
   border-top: 1px solid #ccc
   border-bottom: 1px solid #fff
 
-
-ul 
-  list-style-position: inside
-  margin-left: 0
-  padding-left: 1em
-  text-indent: -1em
-  li:before
-    content: "\00BB \0020"
-  margin: 4px 0
 
 em
   font-weight: bold
