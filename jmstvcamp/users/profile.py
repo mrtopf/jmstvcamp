@@ -25,7 +25,7 @@ class Profile(Handler):
         if self.user is not None:
             ownprofile = self.user['_id'] == user['_id']
 
-        return self.render(ownprofile = ownprofile)
+        return self.render(myuser = user, ownprofile = ownprofile)
 
 class ProfileSchema(formencode.Schema):
     name = formencode.All(formencode.validators.UnicodeString(not_empty=True))

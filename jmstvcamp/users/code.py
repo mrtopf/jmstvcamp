@@ -1,5 +1,6 @@
 # encoding=latin1
 import werkzeug
+import formencode
 from jmstvcamp.framework import Handler
 from jmstvcamp.framework.decorators import html
 

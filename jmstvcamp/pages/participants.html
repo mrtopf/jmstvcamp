@@ -1,19 +1,19 @@
 {% extends "templates/master.html" %}
 {% block content %}
     <div id="participants">
-        <h2 style="margin-bottom: 20px" >Teilnehmer</h2>
+        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes.count()}})</h2>
         <ul class="plist">
             {% for user in yes %}
             <li><a href="/user/{{user._id}}">{{user.name}}</a></li>
             {% endfor %}
         </ul>
-        <h2 style="margin-bottom: 20px" >Nehmen vielleicht teil</h2>
+        <h2 style="margin-bottom: 20px" >Nehmen vielleicht teil ({{maybe.count()}})</h2>
         <ul class="plist">
             {% for user in maybe %}
             <li><a href="/user/{{user._id}}">{{user.name}}</a></li>
             {% endfor %}
         </ul>
-        <h2 style="margin-bottom: 20px" >Interessenten</h2>
+        <h2 style="margin-bottom: 20px" >Interessenten ({{no.count()}})</h2>
         <ul class="plist">
             {% for user in no %}
             <li><a href="/user/{{user._id}}">{{user.name}}</a></li>

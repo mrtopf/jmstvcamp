@@ -36,7 +36,6 @@ class UserEMailAdapter(Adapter):
         # render template
         tmpl = self.settings.email_templates.get_template(tmplname)
         payload = tmpl.render(params)
-        print payload
 
         # encode it in a message
         msg = MIMEText(payload.encode("utf8"), 'plain', 'utf8')

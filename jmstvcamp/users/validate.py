@@ -14,7 +14,6 @@ import jmstvcamp.db
 class Validate(Handler):
     """validate a token"""
 
-    @html
     def wrong(self):
         """show the wrong code page"""
         return self.render("wrongcode.html")

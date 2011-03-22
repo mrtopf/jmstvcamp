@@ -3,30 +3,30 @@
 <div id="profile">
 
         <div id="head">
-            <div id="name">{{user.name|e}}</div>
-            {% if user.organization %}
-                <div id="organization">{{user.organization|e}}</div>
+            <div id="name">{{myuser.name|e}}</div>
+            {% if myuser.organization %}
+                <div id="organization">{{myuser.organization|e}}</div>
             {% endif %}
         </div>
         <hr>
         <div id="details">
 
-            {% if user.homepage %}
-                <div id="homepage">Homepage: <a href="{{user.homepage}}">{{user.homepage|e}}</a></div>
+            {% if myuser.homepage %}
+                <div id="homepage">Homepage: <a href="{{myuser.homepage}}">{{myuser.homepage|e}}</a></div>
             {% endif %}
 
 
-            {% if user.twitter %}
+            {% if myuser.twitter %}
                 <div id="twitter">Twitter:
-                    <a href="http://twitter.com/{{user.twitter|e}}">http://twitter.com/{{user.twitter|e}}</a>
+                    <a href="http://twitter.com/{{myuser.twitter|e}}">http://twitter.com/{{myuser.twitter|e}}</a>
                 </div>
             {% endif %}
         </div>
 
-        {% if user.bio %}
+        {% if myuser.bio %}
             <hr>
             <div id="bio">
-                <div id="biocontent">{{user.fmt_bio}}</div>
+                <div id="biocontent">{{myuser.fmt_bio}}</div>
             </div>
         {% endif %}
 

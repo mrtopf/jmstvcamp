@@ -23,23 +23,11 @@
     <script src="/js/yepnope.js"></script>
     <script>
         yepnope({
-          load: ['/css/fancybox.css',
-                 '/js/jquery.min.js',
-                 '/js/jquery.fancybox.min.js',
+          load: ['/js/jquery.min.js',
                  '/js/jquery.tweet.js'
                  ],
           complete: function () {
             $(document).ready(function() {
-                $("a#nostart-register").fancybox({
-                    'hideOnContentClick': false,
-                    'width': 600,
-                    'height' : 400,
-                    'autoDimensions' : false,
-                    'type' : 'iframe',
-                    'onComplete' : function() {
-                        $("#registrationblock").show();
-                    }
-                });
                 $("#t_jmstvcamp").tweet({
                     query: 'jmstvcamp',
                     count: 5,
@@ -63,15 +51,6 @@
     {% block all %}
 
     <div id="container">
-        <nav>
-            <div id="navblock">
-                <ul id="navcontent">
-                    <li><a href="/">Startseite</a></li>
-                    <li><a href="/wannwo.html">Wann und wo</a></li>
-                    <li><a href="/teilnehmer.html">Teilnehmer</a></li>
-                </ul>
-            </div>
-        </nav>
         <header id="topheader">
             <div id="headercontent">
                 <h1 id="logo"><a href="/"><img src="/img/logo.png" /></a></h1>
@@ -85,15 +64,25 @@
                         {% endif %}<br />
                     <div id="socialbox">
                         <div id="tweetbox">
-                            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmstvcamp.de" data-text="Jetzt anmelden! Das JMStVCamp am 30.4.2011 im Unperfekthaus in Essen." data-count="vertical" data-via="jmstvcamp" data-lang="de">Tweet</a>
+                            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://jmstvcamp.de/" data-text="Jetzt anmelden! Das JMStVCamp am 30.4.2011 im Unperfekthaus in Essen." data-count="vertical" data-via="jmstvcamp" data-lang="de">Tweet</a>
                         </div>
                         <div id="likebox">
-                            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fjmstvcamp.de&amp;layout=box_count&amp;show_faces=false&amp;width=55&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:65px;" allowTransparency="true"></iframe>
+                            <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fjmstvcamp.de&amp;layout=box_count&amp;show_faces=false&amp;width=155&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:155px; height:65px;" allowTransparency="true"></iframe>
                         </div>
                     </div>
                 </aside>
             </div>
         </header>
+        <nav>
+            <div id="navblock">
+                <ul id="navcontent">
+                    <li><a href="/">Startseite</a></li>
+                    <li><a href="/wannwo.html">Wann und wo</a></li>
+                    <li><a href="/teilnehmer.html">Teilnehmer</a></li>
+                    <li><a href="/kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+        </nav>
 
         <div id="main">
             <div class="page">
@@ -121,6 +110,29 @@
                         </div> <!-- rows -->
                     </div> <!-- welcome-block -->
                     {% endblock %}
+                </div> <!-- content -->
+                <aside>
+                    <h2>Information</h2>
+                    <div class="sideblock">
+                        <div class="sidehead">Wann?</div>
+                        <div class="sidecontent">30.4.2011</div>
+                        <div class="sidehead">Wo?</div>
+                        <div class="sidecontent">Unperfekthaus, Essen</div>
+                        <div class="sidehead">Eintritt?</div>
+                        <div class="sidecontent">frei</div>
+                        <div class="sidedetail">(aber Registrierung erforderlich)</div>
+                        {% if not logged_in %}
+                            <a id="start-register" style="cursor: pointer;display: block; margin-top: 10px;" href="/user/register" class=""><img src="/img/button-register.png" /></a>
+                        {% endif %}
+                    </div>
+                    <div id="socialbar">
+                        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FJMStVCamp%2F187845504584630&amp;width=330&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=258" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:330px; height:258px;" allowTransparency="true"></iframe>
+                    </div>
+                </aside>
+            </div> <!-- page -->
+        </div> <!-- main -->
+        <footer>
+            <div id="footercontent">
                     <div id="sponsoren">
                         <h4>Wir danken unseren Sponsoren:</h4>
                         <a class="sponsor" href="http://jugendonline.eu/">
@@ -139,26 +151,7 @@
                             <img src="/img/sponsoren/comlounge.png" />
                         </a>
                     </div>
-                </div> <!-- content -->
-                <aside>
-                    <h2>Information</h2>
-                    <div class="sideblock">
-                        <div class="sidehead">Wann?</div>
-                        <div class="sidecontent">30.4.2011</div>
-                        <div class="sidehead">Wo?</div>
-                        <div class="sidecontent">Unperfekthaus, Essen</div>
-                        <div class="sidehead">Eintritt?</div>
-                        <div class="sidecontent">frei</div>
-                        <div class="sidedetail">(aber Registrierung erforderlich)</div>
-                    </div>
-                    <div id="socialbar">
-                        <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FJMStVCamp%2F187845504584630&amp;width=330&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=258" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:330px; height:258px;" allowTransparency="true"></iframe>
-                    </div>
-                </aside>
-            </div> <!-- page -->
-        </div> <!-- main -->
-        <footer>
-            <div id="footercontent">
+                    <hr />
                 <a href="/impressum.html">Impressum</a> |
                 <a href="/datenschutz.html">Datenschutz</a> |
                 Diese Website wird betrieben von der <a href="http://comlounge.net">COM.lounge GmbH</a>
