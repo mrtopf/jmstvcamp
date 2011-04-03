@@ -1,5 +1,6 @@
 {% extends "templates/master.html" %}
 {% block content %}
+    {% if logged_in %}
     <div id="attendstatebox">
         <div id="status">
             Ihr Teilnamestatus:
@@ -30,6 +31,13 @@
             </form>
         </div>
     </div>
+    {% else %}
+        <div id="attendstatebox">
+            <p>
+            Um Ihren Teilnahmestatus zu ändern, loggen Sie sich bitte ein. <a class="button" href="/login">Login</a>
+            </p>
+        </div>
+    {% endif %}
     <div id="participants">
         <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes|length}} von {{count}})</h2>
         <ul class="plist">
