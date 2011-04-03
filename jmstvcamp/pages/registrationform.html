@@ -30,6 +30,14 @@
                     {% endif %}
                 {% endif %}
             </div>
+            {% if full %}
+            <div class="warning">
+                Leider ist die maximale Anzahl von Teilnehmern schon erreicht. Sollten Sie "Ja" antworten, werden Sie
+                daher zunächst auf die Warteliste gesetzt und bekommen per E-Mail Bescheid, wenn Sie teilnehmen werden.
+                Bitte überprüfen Sie zur Sicherheit Ihren Teilnahmestatus auch noch einmal hier auf der Website unter
+                <a href="/teilnehmer.html">"Teilnehmer"</a>.
+            </div>
+            {% endif %}
             <div class="field buttons">
                 <button type="submit" name="attend" value="yes" id="button-yes" class="button yes">Ja, ich komme!</button>
                 <button type="submit" name="attend" value="maybe" id="button-maybe" class="button maybe">Ich komme vielleicht</button>

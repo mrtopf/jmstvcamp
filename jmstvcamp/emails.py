@@ -11,6 +11,48 @@ import smtplib
 from email.mime.text import MIMEText
 
 
+class Mailer(object):
+    """a real mailer"""
+
+    def __init__(self):
+        self.server = smtplib.SMTP()
+
+    def _mail(self, fromaddr, to, subject, payload):
+        msg = MIMEText(payload.encode("utf8"), 'plain', 'utf8')
+
+        msg['Subject'] = subject
+        msg['From'] = fromaddr
+        msg['To'] = user['email']
+
+        self.server.connect()
+        self.server.sendmail(fromaddr, [to], msg)
+        self.server.quit()
+
+    def mail(self, fromaddr, to, subject, payload):
+        return self._mail(fromaddr, to, subject, payload)
+
+class DummyMailer(object):
+    """a dummy mailer which only stores and prints stuff"""
+
+    def __init__(self):
+        self.last_mail = {}
+
+    def mail(self, fromaddr, to, subject, payload):
+        self.last_mail = {
+            'fromaddr': fromaddr,
+            'to': to,
+            'subject': subject,
+            'payload': payload
+        }
+        print payload
+
+# that you can define the mailer to use by it's name in etc/*.ini
+# this is used in setup.py
+MAILERS = {
+    'real' : Mailer,
+    'dummy' : DummyMailer,
+}
+
 class Adapter(object):
     """a simple adapter"""
 
@@ -36,19 +78,17 @@ class UserEMailAdapter(Adapter):
         # render template
         tmpl = self.settings.email_templates.get_template(tmplname)
         payload = tmpl.render(params)
+        print payload
 
         # encode it in a message
-        msg = MIMEText(payload.encode("utf8"), 'plain', 'utf8')
+        self.settings.mailer.mail(
+                fromaddr,
+                user['email'],
+                subject, 
+                payload
+        )
 
-        msg['Subject'] = subject
-        msg['From'] = fromaddr
-        msg['To'] = user['email']
-
-        s = smtplib.SMTP()
-        s.connect()
-        s.sendmail(fromaddr, [user['email']], msg.as_string())
-        s.quit()
-
+        #self.settings.mailer.mail(fromaddr, user['email'], msg.as_string())
 
     def send_optin(self):
         """send the opt-in message to the user"""
@@ -69,4 +109,12 @@ class UserEMailAdapter(Adapter):
         self.send('Ihr neuer Validierungscode für das JMStVCamp', 'newcode.txt', 
             url = urlparse.urljoin(self.settings.virtual_host,"/user/validate?token="+self.context['validationcode'])
         )
+
+    def send_waitinglist(self):
+        """inform a user that he is on the waitinglist"""
+        self.send('Sie sind auf der Warteliste für das JMStVCamp', 'onwaitinglist.txt')
+
+    def send_attend(self):
+        """inform a user that he is attending"""
+        self.send('Sie sind beim JMStVCamp auf die Teilnehmerliste nachgerückt', 'fromwaitinglist.txt')
 

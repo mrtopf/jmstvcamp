@@ -10,6 +10,7 @@ from jinja2 import Environment, PackageLoader, TemplateNotFound
 from quantumcore.storages import AttributeMapper
 from framework.utils import get_static_urlparser
 import db
+import emails
 
 def setup(**kw):
     """initialize the setup"""
@@ -21,6 +22,8 @@ def setup(**kw):
     settings['dbname'] = "jmstvcamp"
     settings['shared_secret'] = "c6cs8cd67c8s76c9cs76ds98c76scds"
     settings['usercoll'] = "users"
+    settings['maxpeople'] = 100
+    settings['mailername'] = "real"
     settings.update(kw)
 
     settings.pts = Environment(loader=PackageLoader("jmstvcamp","pages"))
@@ -29,5 +32,7 @@ def setup(**kw):
     settings.db = pymongo.Connection()[settings.dbname]
     settings.userdb = settings.db[settings.usercoll]
     settings.users = db.Users(settings)
+    settings.maxpeople = int(settings.maxpeople)
+    settings.mailer = emails.MAILERS[settings.mailername]()
     return settings
 

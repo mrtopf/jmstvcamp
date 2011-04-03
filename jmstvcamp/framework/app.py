@@ -1,5 +1,6 @@
 import werkzeug
 import routes
+import os
 from logbook import FileHandler
 
 import handler
@@ -13,7 +14,8 @@ class Application(object):
         self.settings = settings
         self.mapper = routes.Mapper()
         self.setup_handlers(self.mapper)
-        self.loghandler = FileHandler(self.logfilename)
+        logpath = os.path.join(settings.log_dir, self.logfilename)
+        self.loghandler = FileHandler(logpath)
 
     def __call__(self, environ, start_response):
         with self.loghandler.threadbound():

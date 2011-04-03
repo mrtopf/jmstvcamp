@@ -51,6 +51,7 @@ class Handler(object):
         data = copy.copy(kwargs)
         data['logged_in'] = self.user is not None
         data['user'] = self.user
+        data['full'] = self.settings.users.get_attend().count()>=self.settings.maxpeople
         tmpl = self.settings.pts.get_template(tmplname)
         return tmpl.render(**data)
 

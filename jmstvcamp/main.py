@@ -31,7 +31,7 @@ class Page(Handler):
 
 class App(Application):
 
-    logfilename = "/tmp/jmstvcamp.log"
+    logfilename = "jmstvcamp.log"
     
     def setup_handlers(self, map):
         """setup the mapper"""

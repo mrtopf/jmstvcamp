@@ -48,7 +48,7 @@ class Login(Handler):
             return self.error("password", "Dieses Passwort ist leider falsch.", values)
 
         # user ok, log him in.
-        url = urlparse.urljoin(self.settings.virtual_host,"/user/profile")
+        url = urlparse.urljoin(self.settings.virtual_host,"/logged_in.html")
         res = werkzeug.redirect(location=url)
         cv = self.get_user_cookie(user)
         res.set_cookie("u", cv)

@@ -1,0 +1,15 @@
+Hallo {{user.name}},
+
+Sie sind soeben von der Warteliste auf die Teilnehmerliste nachgerückt und nehmen
+damit am JMStVCamp am 30.4. teil.
+
+Sollten Sie inzwischen doch nicht mehr teilnehmen können, tragen Sie sich doch bitte
+wieder aus, damit weitere Interessenten nachrücken können! Vielen Dank!
+
+Ansonsten bis zum 30.4.!
+
+Ihr JMStVCamp-Team!
+
+--
+http://jmstvcamp.de/
+info@jmstvcamp.de

@@ -1,9 +1,45 @@
 {% extends "templates/master.html" %}
 {% block content %}
+    <div id="attendstatebox">
+        <div id="status">
+            Ihr Teilnamestatus:
+            <b>{% if user.attend=="yes" %}
+                {% if user.waitinglist %}
+                    Sie wollen teilnehmen, Sie sind aber auf der Warteliste.
+                {% else %}
+                    Sie nehmen an der Veranstaltung teil.
+                {% endif %}
+            {% elif user.attend=="maybe" %}
+                Sie nehmen vielleicht teil.
+            {% elif user.attend=="no" %}
+                Sie nehmen nicht teil.
+            {% endif %}</b>
+        </div>
+        <div id="changestate">
+            <form method="post" action="/user/state">
+                <h3>Teilnahmestatus ändern:</h3>
+                {% if user.attend!="yes" %}
+                    <button type="submit" name="attend" value="yes" id="button-yes" class="button yes">Ja, ich komme!</button>
+                {% endif %}
+                {% if user.attend!="maybe" %}
+                    <button type="submit" name="attend" value="maybe" id="button-maybe" class="button maybe">Ich komme vielleicht</button>
+                {% endif %}
+                {% if user.attend!="no" %}
+                    <button type="submit" name="attend" value="no" id="button-no" class="button no">Ich komme nicht, will aber informiert werden</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
     <div id="participants">
-        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes.count()}})</h2>
+        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes|length}})</h2>
         <ul class="plist">
             {% for user in yes %}
+            <li><a href="/user/{{user._id}}">{{user.name}}</a></li>
+            {% endfor %}
+        </ul>
+        <h2 style="margin-bottom: 20px" >Warteliste ({{waiting|length}})</h2>
+        <ul class="plist">
+            {% for user in waiting %}
             <li><a href="/user/{{user._id}}">{{user.name}}</a></li>
             {% endfor %}
         </ul>

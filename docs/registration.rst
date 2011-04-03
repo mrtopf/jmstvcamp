@@ -28,6 +28,24 @@ A user changes the attendance state
     * delete account
  3. The user makes a choice and the system does the corresponding action
 
+Special conditions
+------------------
+
+ * The attendance list is full and the user is formerly not attending but now wants to attend
+    1. The edit screen shows already that the list is full
+    2. After changing the user is put onto the waiting list
+    3. The user gets a flash message telling him, that he now is on the waiting
+       list
+ * The attendance list is full and a user changes state from "yes" to "no" or
+   "maybe".
+    1. The user is removed from the list and put onto the other list
+    2. A user from the waiting list is selected and put onto the attendance
+       list
+    3. An email is sent to the user telling him that he now is attending
+
+
+
+
 A user forgot the link to the manage page
 =========================================
 

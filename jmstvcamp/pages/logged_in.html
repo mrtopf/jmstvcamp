@@ -1,0 +1,32 @@
+{% extends "templates/master.html" %}
+{% block content %}
+    <div id="loggedin">
+        <h2 style="margin-bottom: 20px" >Hallo {{user.name}}!</h2>
+    
+        <p>
+        Sie sind nun eingeloggt!
+        </p>
+        <p>Ihr Teilnahmestatus: 
+        <b>{% if user.attend=="yes" %}
+            {% if user.waitinglist %}
+                Sie sind auf der Warteliste.
+            {% else %}
+                Sie nehmen an der Veranstaltung teil.
+            {% endif %}
+        {% elif user.attend=="maybe" %}
+            Sie sind sich noch nicht sicher, ob Sie kommen.
+        {% elif user.attend=="no" %}
+            Sie nehmen nicht teil.
+            {% endif %}</b>
+        </p>
+        <p>
+        Weitere Möglichkeiten:
+        </p>
+        <ul>
+            <li><a href="/user/profile">Zu meinem Profil</a></li>
+            <li><a href="/user/edit">Profil und Teilnahmestatus bearbeiten</a></li>
+            <li><a href="/">Zur Homepage</a></li>
+        </ul>
+
+    </div>
+{% endblock %}

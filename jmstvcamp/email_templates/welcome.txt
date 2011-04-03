@@ -1,6 +1,6 @@
 Hallo {{user.name}},
 
-{% if user.attend=="yes" %}
+{% if user.attend=="yes" and not user.waitinglist %}
 wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
 teilnehmen.  Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite
 anzupassen, falls Sie dies wünschen.  Sie dient dazu, dass Teilnehmer sich
@@ -10,6 +10,24 @@ Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Sollten
 Sie wider Erwarten doch nicht teilnehmen können, würden wir uns über eine
 Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
 einstellen können.
+{% elif user.attend=="yes" and user.waitinglist %}
+wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
+teilnehmen wollen.
+
+Leider sind aber alle Plätze schon belegt und Sie sind damit auf der
+Warteliste.  Sollten Teilnehmer abspringen oder wir mehr Kapazitäten zur
+Verfügung gestellt bekommen, so rücken Sie automatisch nach und erhalten eine
+E-Mail darüber. Trotzdem empfehlen wir, dass Sie zur Sicherheit auf
+http://jmstvcamp.de noch einmal selbst nachschauen, ob Sie auf der
+Teilenhmerliste gelistet sind.
+
+Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite anzupassen, falls Sie
+dies wünschen.  Sie dient dazu, dass Teilnehmer sich untereinander schon vor
+der Veranstaltung ein wenig kennenlernen können. 
+
+Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Wenn Sie
+doch nicht kommen können, würden wir und die nachrückenden Teilnehmer sich über
+eine Änderung Ihres Teilnahmestatus freuen.
 {% elif user.attend=="maybe" %}
 wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
 interessiert sind und hoffen, dass Sie sich noch für eine Teilnahme entscheiden werden.  

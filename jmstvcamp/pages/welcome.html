@@ -3,7 +3,7 @@
     <div id="welcome">
         <h2 style="margin-bottom: 20px" >Willkommen beim JMStVCamp!</h2>
 
-        {% if user.attend=="yes" %}
+        {% if user.attend=="yes" and not user.waitinglist %}
         <p>
         Wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
         teilnehmen.  Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite
@@ -14,7 +14,32 @@
         Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Sollten
         Sie wider Erwarten doch nicht teilnehmen können, würden wir uns über eine
         Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
-        einstellen können.
+        einstellen können und die Personen auf der Warteliste auch eine Chance haben,
+        nachzurücken.
+        </p>
+        {% elif user.attend=="yes" and user.waitinglist %}
+        <p>
+        Wir freuen uns, dass Sie am JMStVCamp am 30.4.2011 im Unperfekthaus in Essen
+        teilnehmen wollen.  
+        </p>
+        <p>
+        <div class="warning">Leider sind aber schon alle Plätze belegt und Sie sind damit auf der Warteliste gelandet!</div>
+        </p>
+        <p>Sollten Teilnehmer abspringen oder wir unsere Kapazitäten erhöhen können, rücken Sie automatisch nach.
+        Sie erhalten dann eine entsprechende Mail darüber, sollten aber zu Sicherheit dennoch kurz vor der Veranstaltung 
+        auf der <a href="/teilnehmer.html">Teilnehmerliste</a> nachschauen, ob Sie auch wirklich auf die Teilnehmerliste gerutscht sind.
+        </p>
+        <p>
+        Unten finden Sie Ihre Zugangsdaten, um ihre Profilseite
+        anzupassen, falls Sie dies wünschen.  Sie dient dazu, dass Teilnehmer sich
+        untereinander schon vor der Veranstaltung ein wenig kennenlernen können.
+        </p>
+        <p>
+        Weiterhin können Sie mit diesem Zugang ihren Teilnahmestatus ändern. Sollten
+        Sie wider Erwarten doch nicht teilnehmen können, würden wir uns über eine
+        Änderung des Teilnahmestatus freuen, damit wir unsere Planungen darauf
+        einstellen können und die Personen auf der Warteliste nach Ihnenauch eine Chance haben,
+        nachzurücken.
         </p>
         {% elif user.attend=="maybe" %}
         <p>
