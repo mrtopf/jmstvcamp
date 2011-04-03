@@ -14,5 +14,7 @@ class Participants(Handler):
         waiting = [u for u in db.get_attend("yes") if u['waitinglist']]
         maybe = db.get_attend("maybe") 
         no = db.get_attend("no") 
-        return self.render(yes = yes, maybe = maybe, no=no, waiting=waiting)
+        count = self.settings.maxpeople
+        return self.render(yes = yes, maybe = maybe, no=no, waiting=waiting, 
+                    count=count)
 

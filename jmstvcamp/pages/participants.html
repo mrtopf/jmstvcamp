@@ -5,7 +5,7 @@
             Ihr Teilnamestatus:
             <b>{% if user.attend=="yes" %}
                 {% if user.waitinglist %}
-                    Sie wollen teilnehmen, Sie sind aber auf der Warteliste.
+                    Sie sind auf der Warteliste.
                 {% else %}
                     Sie nehmen an der Veranstaltung teil.
                 {% endif %}
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div id="participants">
-        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes|length}})</h2>
+        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes|length}} von {{count}})</h2>
         <ul class="plist">
             {% for u in yes %}
             <li><a href="/user/{{u._id}}" class="{{ 'me' if u._id == user._id  }}">{{u.name}}</a>{% if u.organization %}<span class="orga">, {{u.organization}}</span>{% endif %}
