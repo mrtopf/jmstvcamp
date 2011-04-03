@@ -200,7 +200,7 @@ class Users(object):
     def get_attend(self, attend="yes"):
         """return a list by attendance status"""
         q = {'attend' : attend, 'state' : 'live'}
-        res = self.coll.find(q, as_class=User)
+        res = self.coll.find(q, sort=[('name',1)], as_class=User)
         return res
 
     @property

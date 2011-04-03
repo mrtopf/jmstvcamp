@@ -29,7 +29,7 @@ class Profile(Handler):
 
 class ProfileSchema(formencode.Schema):
     name = formencode.All(formencode.validators.UnicodeString(not_empty=True))
-    attend = formencode.validators.OneOf(['yes','no','maybe'])
+    #attend = formencode.validators.OneOf(['yes','no','maybe'])
     organization = formencode.All(formencode.validators.UnicodeString())
     homepage = formencode.validators.URL()
     bio = formencode.validators.UnicodeString()

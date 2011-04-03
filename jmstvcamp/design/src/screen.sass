@@ -436,9 +436,21 @@ em
 
 #participants
   .plist
-    +column-count(3)
+    +column-count(2)
     margin-bottom: 20px
+    li
+      margin-top: 5px
 
+  .me 
+    display: inline-block
+    font-weight: bold
+    font-size: 110%
+    border-bottom: 2px solid #0cf
+    color: black
+ 
+  .orga
+    font-size: 10px
+    color: #888
 
 // tweets
 h4
@@ -493,3 +505,12 @@ h4
   background: #fc0
   font-weight: bold
 
+#attendstatebox
+  border: 1px solid #ccc
+  padding: 7px
+  margin: 3px
+  background: white
+  @include box-shadow(rgba(0,0,0,0.2), 1px, 1px, 2px, 0px, inset)
+
+  #status
+    font-size: 130%
