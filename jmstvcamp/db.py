@@ -180,7 +180,7 @@ class Users(object):
             user['queue_date'] = None
             user['waitinglist'] = False
             user.log("move up from waitinglist")
-            self.log.info("user %s moved from waitinglist" %user['_id'])
+            self.log.info("user %s (%s) moved from waitinglist" %(user['_id'],user['name']))
             euser = emails.UserEMailAdapter(self.settings, user)
             euser.send_attend()
             self.coll.save(user)
