@@ -29,7 +29,7 @@ class Page(Handler):
             print "not found", page
             raise werkzeug.exceptions.NotFound()
 
-class Fehler(Handler).
+class Fehler(Handler):
     
     def get(self):
         peter()
