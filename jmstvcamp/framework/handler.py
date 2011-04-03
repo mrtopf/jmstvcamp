@@ -22,10 +22,10 @@ class Handler(object):
         self.userid = None
         self.user = None
         if self.request.cookies.has_key("u"):
-            self.settings.log.debug("found token in cookie")
             at = self.request.cookies['u']
             try:
                 self.timestamp, self.userid, self.roles, self.token_attribs = auth_tkt.parse_ticket(self.settings.shared_secret, at, "127.0.0.1")
+                self.settings.log.debug("found user %s in cookie" %self.userid)
             except auth_tkt.BadTicket, e:
                 self.settings.log.error("BAD token detected: %s " %e)
                 pass
