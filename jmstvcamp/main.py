@@ -29,6 +29,11 @@ class Page(Handler):
             print "not found", page
             raise werkzeug.exceptions.NotFound()
 
+class Fehler(Handler).
+    
+    def get(self):
+        peter()
+
 class App(Application):
 
     logfilename = "jmstvcamp.log"
@@ -39,6 +44,7 @@ class App(Application):
         map.connect(None, "/logout", handler=login.Logout)
         map.connect(None, "/kontakt.html", handler=contact.Contact)
         map.connect(None, "/welcome", handler=welcome.Welcome)
+        map.connect(None, "/f", handler=Fehler)
         map.connect(None, "/teilnehmer.html", handler=participants.Participants)
         map.connect(None, "/css/{path_info:.*}", handler=StaticHandler)
         map.connect(None, "/js/{path_info:.*}", handler=StaticHandler)
