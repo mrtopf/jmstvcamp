@@ -1,0 +1,86 @@
+{% extends "templates/master.html" %}
+{% block content %}
+<div id="programm">
+    <h2>Das Programm...</h2>
+    <p>
+        gibt es nicht im Vorfeld, denn das Programm wird von den Teilnehmern erst
+        vor Ort definiert, indem jeder, der will, Sessions vorschlagen kann.
+    </p>
+    <p>
+        Hier kann man allerdings schon Themenvorschläge hinterlassen, um zu schauen,
+        ob generell Interesse besteht und ob man sich vorbereiten sollte. 
+    </p>
+
+    <h2>Themenvorschläge</h2>
+    <form id="newthema" method="POST" action="/themen/new">
+        <h3>Ihr Vorschlag</h3>
+        <textarea cols="70" rows="3" name="content"></textarea>
+        <input type="submit" class="button" value="Neues Thema vorschlagen" />
+    </form>
+
+    <ul id="themen">
+        {% for thema in themen %}
+        <li class="thema">
+            <div class="voting">
+                <span id="up-{{thema._id}}" data-id="{{thema._id}}" class="vote-up {{'active' if thema.show_up}}">up</span></br>
+                <span class="votes" id="vote-{{thema._id}}">{{thema.votes}}</span><br />
+                <span id="down-{{thema._id}}" data-id="{{thema._id}}" class="vote-down {{'active' if thema.show_down}}">down</span></br>
+            </div>
+            <div class="themabody">
+                <div class="byline">
+                    <a href="/user/{{thema.user._id}}">{{thema.user.name|e}}</a>:
+                </div>
+                <div class="text">
+                    {{thema.content|e}}
+                </div>
+                <a href="#" class="showcomments">Kommentare (5)</a>
+                <ul class="comments">
+
+                </ul>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    function update(i, data) {
+        $("#vote-"+i).text(data.votes);
+        console.log(data.myvote);
+        if (data.myvote<1) {
+            $("#up-"+i).attr("class", "active");
+        } else {
+            $("#up-"+i).remove("active");
+        }
+        if (data.myvote>-1) {
+            $("#down-"+i).add("active");
+        } else {
+            $("#down-"+i).remove("active");
+        }
+    }
+
+    $(document).ready(function() {
+        $(".vote-up").click(function() {
+            var i = $(this).attr("data-id");
+            $.ajax({
+                url: "/themen/"+i+"/up",
+                type: "POST",
+                success: function(data) {
+                    update(i, data);
+                }
+            })
+            return false;
+        });
+        $(".vote-down").click(function() {
+            var i = $(this).attr("data-id");
+            $.ajax({
+                url: "/themen/"+i+"/down",
+                type: "POST",
+                success: function(data) {
+                    update(i, data);
+                }
+            })
+            return false;
+        });
+    });
+</script>
+{% endblock %}
