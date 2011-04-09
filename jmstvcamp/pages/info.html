@@ -1,0 +1,91 @@
+{% extends "templates/master.html" %}
+{% block content %}
+    <h2>Wann und Wo</h2>
+    <div id="infobox">
+        <div id="gbutton">
+            <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=JMStVCamp&dates=20110430/20110431&details=&location=Unperfekthaus%20Essen&trp=false&sprop=http%3A%2F%2Fjmstvcamp.de&sprop=name:JMStVCamp" target="_blank"><img src="http://www.google.com/calendar/images/ext/gc_button6_de.gif" border=0></a>
+        </div>
+        <div class="label">Beginn</div>
+        <div class="info">30. April 2011, 10 Uhr</div>
+
+        <div class="label">Ende</div>
+        <div class="info">30. April 2011, 18 Uhr</div>
+
+        <div class="label">Wo?</div>
+        <div class="info">
+            <a href="http://www.unperfekthaus.de/">Unperfekthaus Essen</a><br>
+            Friedrich-Ebert-Str. 18<br>
+            45127 Essen-City<br>
+        </div>
+    </div>
+
+    <h2>Karte</h2>
+    <div id="map_canvas"> </div>
+
+    <h2>Was ist ein Barcamp?</h2>
+    <p>
+    Im Gegensatz zu Konferenzen gibt es bei einem Barcamp keinen Unterscheidung zwischen
+    Referenten und Gästen, es gibt nur Teilnehmer. Jeder ist ein Teilnehmer.
+    </p>
+    <p>
+    Es gibt auch kein vorgefertigtes Programm. Stattdessen wird spontan vor Ort 
+    entschieden, welche Sessions es geben soll. Jeder Teilnehmer hat dabei die Möglichkeit,
+    eine Session vorzuschlagen. Eine Session kann dabei ein Vortrag, ein Panel, eine 
+    Diskussion im Plenum, ein Brainstorming oder auch was ganz anderes sein. Beim JMStVCamp
+    würden wir uns aber statt über Vorträge vor allem über Diskussionsrunden freuen, bei denen alle Teilnehmer
+    einer Session gleichberechtigt diskutieren. Hat man von einem Thema wenig Ahnung,
+    aber hätte gerne Input, so kann man zudem eine Session als Fragestellung anbieten
+    und sich von den Teilnehmern diese erklären lassen.
+    </p>
+    <p>
+    Die Sessions können in der Sessionvorstellung zu Beginn des Camps kurz vorgestellt
+    werden und werden dann auf einem Sessionplan aufgehangen. Hat man später noch Ideen
+    für weitere Sessions, z.B. weil man in einer Session weitere Diskussionspunkte identifiziert hat,
+    so können durchaus später noch weitere Sessions hinzukommen. Der Sessionplan ist
+    also dynamisch und soll sich den Bedürfnissen der Teilnehmer anpassen.
+    </p>
+
+    <h2>Was sollte ich tun?</h2>
+    <p>
+    Gut wäre, sich im Vorfeld schon einmal zu überlegen, was für Themen und Fragestellungen einen
+    interessieren und diese in den <a href="/themen/">Themenvorschlägen</a> niederzuschreiben.
+    Man bekommt dann schonmal ein Gefühl dafür, wieviele Leute sowas interessieren könnte.
+    </p>
+    <p>
+    Wichtig ist dabei aber, dass dies keine verbindlichen Sessions sind &ndash; diese werden
+    erst am Morgen des Barcamps definiert.
+    </p>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var address="Friedrich-Ebert-Str. 18, 45127 Essen-City"
+        function init() {
+            var geocoder = new google.maps.Geocoder();
+            if (geocoder) {
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        show(results[0].geometry.location);
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+        }
+        
+        function show(latlng) {
+            var myOptions = {
+                zoom: 15,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var marker = new google.maps.Marker({
+                map: map, 
+                position: latlng
+            });
+        }
+        init();
+    </script>
+{% endblock %}
+
+
