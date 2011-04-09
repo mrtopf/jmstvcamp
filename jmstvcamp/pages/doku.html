@@ -1,0 +1,37 @@
+{% extends "templates/master.html" %}
+{% block content %}
+<h2>Dokumentation</h2>
+
+{% if logged_in %}
+<form class="form" method="post" action="/doku/">
+    <p>
+    Bitte geben Sie den Namen der Session ein und wir erzeugen ein Etherpad für Sie:
+    </p>
+    <div class="field {{'error' if errors.name}}">
+        <label for="name">Titel der Session</label>
+        <input type="text" id="name" name="name" value="{{values.name}}" size="30" maxlength="120">
+        {% if errors.name %}
+            <span class="error">{{errors.name}}</span>
+        {% endif %}
+    </div>
+    <input type="submit" class="button block" value="Erstellen" />
+</form>
+{% else %}
+Bitte loggen Sie sich ein, um ein neues Etherpad zu erstellen.
+{% endif %}
+
+<h2>Erstellte Pads</h2>
+<ul id="pads">
+    {% for pad in pads %}
+    <li class="pad">
+        <a href="{{pad.url}}" class="paditem">{{pad.name}}</a>
+        {% if pad.mine %}
+        <div class="actions">
+            <a href="/doku/{{pad._id}}/delete" class="pad-delete" data="{{pad._id}}">✗</a>
+        </div>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

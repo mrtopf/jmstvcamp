@@ -16,9 +16,9 @@ $registerbuttoncolor: #0cf
 
 // configuration
 
-$headfont: Arial, Helvetica, sans-serif
+$headfont: Helvetica, Arial, sans-serif
 
-$blueprint_font_family: Arial, Helvetica, sans-serif
+$blueprint_font_family: "Helvetica Neue", Helvetica, Arial, sans-serif
 $page_width: 960px
 $main_width: 600px
 $bigcolumn_width: 600px
@@ -34,8 +34,8 @@ $box_color: #333333
 
 //Recommended Blueprint configuration with scoping and semantic layout:
 body
-  font-family: unquote("Lucida Grande"), Helvetica, Arial, sans-serif
-  font-size: 13px
+  font-family: unquote("Helvetica Neue"), Helvetica, Arial, sans-serif
+  font-size: 14px
   line-height: 1.5
   background: white image-url("bg.gif") repeat
 
@@ -118,13 +118,15 @@ footer
   overflow: hidden
 
 nav
+  background: rgba(128,140,160,0.2)
+  +linear-gradient(color-stops(#f0f0f0,#fff))
   display: block
   font-family: $headfont
   font-size: 12px
-  font-weight: bold
   padding: 4px 0 0 0
   margin: 0 0 2px 0
-  background: rgba(128,140,160,0.2)
+  border-top: 1px solid #ccc
+  border-bottom: 1px solid #ccc
   color: #333
 
 #navblock
@@ -142,10 +144,14 @@ nav
     list-style: none
     text-transform: uppercase
     margin-left: 0px
-    margin-right: 80px
+    margin-right: 30px
+    a
+      color: #333
+  #nav-register
+    float: right
   li:hover
     a
-      color: black
+      color: #06a
 
 //
 // big column and sidebar
@@ -299,6 +305,7 @@ aside#loginbox
 
     #organization, #homepage
       width: 500px
+
   .field.error
     border: 1px solid #a00
     background: #feb
@@ -317,12 +324,6 @@ aside#loginbox
   +linear-gradient(color-stops(rgba(255,255,255,0.2), rgba(200,200,200,0.7)))
   cursor: pointer
 
-.button.topics
-  +linear-gradient(color-stops(#777, darken(#777,20%)))
-  color: white
-  padding: 5px 10px
-  +border-radius(10px)
-  border: 0
 
 .button.yes
   font-weight: bold
@@ -349,11 +350,6 @@ aside#loginbox
   border: none
   width: 270px
   height: 100px
-  //border: 1px solid darken($registerbuttoncolor,10%)
-  //+box-shadow(0,1px,0px,rgba(0,0,0,0.1))
-  //+border-radius(30px)
-  //background: $registerbuttoncolor
-  //+linear-gradient(color-stops($registerbuttoncolor, darken($registerbuttoncolor,20%)))
   margin: 2px 12px 0 0
   color: white
   text-shadow: 0 -1px 0 #08c
@@ -414,18 +410,6 @@ fieldset
     margin-top: 10px
     border: none
     font-size: 110%
-
-  #biocontent
-    font-size: 12px
-
-  ul 
-    list-style-position: inside
-    margin-left: 0
-    padding-left: 1em
-    text-indent: -1em
-    li:before
-      content: "\00BB \0020"
-    margin: 4px 0
 
 hr
   margin: 17px 0 18px
@@ -522,9 +506,27 @@ h4
   #status
     font-size: 130%
 
+//
+// THEMENSEITE
+//
+
+.button.topics
+  +linear-gradient(color-stops(#777, darken(#777,20%)))
+  +border-radius(10px)
+  +box-shadow(rgba(0,0,0,0.3), 0px, 2px, 3px)
+  color: white
+  padding: 5px 10px
+  border: 0
+  margin: 0 0 3px 0
+
+.button.topics:active
+  margin: 1px 0 2px 0
+  +box-shadow(rgba(0,0,0,0.3), 0px, 1px, 3px)
+
+
 #newthema-login
   +border-radius(10px)
-  padding: 5px
+  padding: 5px 10px
   font-size: 90%
   color: #888
   border: 1px solid #aaa
@@ -537,10 +539,11 @@ h4
   width: 95%
 
 #themen
-  margin-top: 10px
+  margin-top: 20px
 
   .thema
-    margin-bottom: 10px
+    margin-bottom: 20px
+    overflow: auto
 
 
   .voting
@@ -560,14 +563,6 @@ h4
   .themabody
     margin-left: 80px
 
-  .showcomments
-    display: block
-    background: #ddd
-    color: #567
-    margin: 4px 0px 0px 0px
-    padding: 2px 
-    font-size: 0.8em
-
   .byline
     font-size: 80%
     color: #888
@@ -581,9 +576,91 @@ h4
     display: block
     background: red
     margin: 0 auto
+    cursor: pointer
   .vote.active
     background: url(/img/star.png) no-repeat
   .vote.inactive
     background: url(/img/star_empty.png) no-repeat
 
+  .actions
+    float: right
+    font-size: 16px
 
+  .text-edit
+    display: none
+
+//
+// Pads
+//
+#pads
+  .pad
+    overflow: auto
+
+  .actions
+    float: right
+    font-size: 16px
+
+//
+// logged in
+//
+
+.options 
+  li
+    display: inline-block
+    margin-bottom: 10px
+
+// markdown overwrites
+
+.text
+  font-size: 14px
+
+  h1,h2,h3,h4,h5,h6
+    font-weight: bold
+    font-size: 14px
+    color: #333
+
+  h1
+    font-size: 16px
+    border-bottom: 1px solid #999
+  h2
+    font-size: 15px
+  h3
+    font-size: 14px
+
+  ul 
+    list-style-position: inside
+    margin-left: 0
+    padding-left: 1em
+    text-indent: -1em
+    li:before
+      content: "\00BB \0020"
+    margin: 4px 0
+
+#markdown
+  h2
+    font-size: 20px
+  +border-radius(10px)
+  +box-shadow(rgba(0,0,0,0.7),3px,3px,10px)
+  position: absolute
+  top: 340px
+  left: 260px
+  width: 500px
+  margin: 0 auto
+  background: #7cf
+  padding: 20px
+  display: none
+  table
+    width: 100%
+  code
+    font-family: "Courier New"
+    font-weight: bold
+  td
+    padding-left: 10px
+
+  #markdown-close
+    float: right
+
+#markdown-open
+  float: right
+  font-size: 80%
+  cursor: pointer
