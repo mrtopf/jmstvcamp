@@ -317,6 +317,13 @@ aside#loginbox
   +linear-gradient(color-stops(rgba(255,255,255,0.2), rgba(200,200,200,0.7)))
   cursor: pointer
 
+.button.topics
+  +linear-gradient(color-stops(#777, darken(#777,20%)))
+  color: white
+  padding: 5px 10px
+  +border-radius(10px)
+  border: 0
+
 .button.yes
   font-weight: bold
   +linear-gradient(color-stops($yes_color, darken($yes_color,20%)))
@@ -515,24 +522,43 @@ h4
   #status
     font-size: 130%
 
+#newthema-login
+  +border-radius(10px)
+  padding: 5px
+  font-size: 90%
+  color: #888
+  border: 1px solid #aaa
+
+#textinp
+  +box-shadow(rgba(0,0,0,0.1), 1px, 1px, 2px, 1px, inset)
+  +border-radius(3px)
+  border: 1px solid #888
+  margin: 3px
+  width: 95%
+
 #themen
   margin-top: 10px
 
   .thema
     margin-bottom: 10px
+
+
   .voting
+    +border-radius(10px)
+    border: 1px solid #ddd
+    padding: 5px
+    background: white
     float: left
     width: 50px
     text-align: center
+    margin: 3px
     margin-right: 10px
-
-  .active
-    cursor: pointer
-    color: #038
-    font-weight: bold
+    .vote-login
+      font-size: 80%
+      color: #888
 
   .themabody
-    margin-left: 60px
+    margin-left: 80px
 
   .showcomments
     display: block
@@ -546,4 +572,18 @@ h4
     font-size: 80%
     color: #888
 
-    
+  .votes
+    font-size: 130%
+    font-weight: bold
+  .vote
+    width: 24px
+    height: 24px
+    display: block
+    background: red
+    margin: 0 auto
+  .vote.active
+    background: url(/img/star.png) no-repeat
+  .vote.inactive
+    background: url(/img/star_empty.png) no-repeat
+
+

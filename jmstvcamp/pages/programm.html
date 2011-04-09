@@ -12,19 +12,29 @@
     </p>
 
     <h2>Themenvorschläge</h2>
+    {% if logged_in %}
     <form id="newthema" method="POST" action="/themen/new">
-        <h3>Ihr Vorschlag</h3>
-        <textarea cols="70" rows="3" name="content"></textarea>
-        <input type="submit" class="button" value="Neues Thema vorschlagen" />
+        <h3 style="margin-left: 3px" >Ihr Vorschlag</h3>
+        <textarea cols="75" rows="4" name="content" id="textinp"></textarea>
+        <input type="submit" class="button topics" value="Neues Thema vorschlagen" />
     </form>
+    {% else %}
+    <div id="newthema-login">
+        Um Themenvorschläge einreichen zu können, müssen Sie eingeloggt sein.
+        <a href="/login">zum Login</a>
+    </div>
+    {% endif %}
 
     <ul id="themen">
         {% for thema in themen %}
         <li class="thema">
             <div class="voting">
-                <span id="up-{{thema._id}}" data-id="{{thema._id}}" class="vote-up {{'active' if thema.show_up}}">up</span></br>
-                <span class="votes" id="vote-{{thema._id}}">{{thema.votes}}</span><br />
-                <span id="down-{{thema._id}}" data-id="{{thema._id}}" class="vote-down {{'active' if thema.show_down}}">down</span></br>
+                <div class="votes" id="vote-{{thema._id}}">{{thema.votes}}</div>
+                {% if logged_in %}
+                <div class="votecontainer"><a id="votebutton-{{thema._id}}" data-id="{{thema._id}}" class="vote {{'active' if thema.has_voted else 'inactive'}}"></a></div>
+                {% else %}
+                <div class="vote-login">Bitte loggen Sie sich ein, um zu voten</div>
+                {% endif %}
             </div>
             <div class="themabody">
                 <div class="byline">
@@ -33,10 +43,6 @@
                 <div class="text">
                     {{thema.content|e}}
                 </div>
-                <a href="#" class="showcomments">Kommentare (5)</a>
-                <ul class="comments">
-
-                </ul>
             </div>
         </li>
         {% endfor %}
@@ -46,34 +52,18 @@
     function update(i, data) {
         $("#vote-"+i).text(data.votes);
         console.log(data.myvote);
-        if (data.myvote<1) {
-            $("#up-"+i).attr("class", "active");
+        if (data.myvote) {
+            $("#votebutton-"+i).attr("class", "vote active");
         } else {
-            $("#up-"+i).remove("active");
-        }
-        if (data.myvote>-1) {
-            $("#down-"+i).add("active");
-        } else {
-            $("#down-"+i).remove("active");
+            $("#votebutton-"+i).attr("class", "vote inactive");
         }
     }
 
     $(document).ready(function() {
-        $(".vote-up").click(function() {
+        $(".vote").click(function() {
             var i = $(this).attr("data-id");
             $.ajax({
-                url: "/themen/"+i+"/up",
-                type: "POST",
-                success: function(data) {
-                    update(i, data);
-                }
-            })
-            return false;
-        });
-        $(".vote-down").click(function() {
-            var i = $(this).attr("data-id");
-            $.ajax({
-                url: "/themen/"+i+"/down",
+                url: "/themen/"+i+"/vote",
                 type: "POST",
                 success: function(data) {
                     update(i, data);

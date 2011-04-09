@@ -18,8 +18,8 @@ class NewHandler(Handler):
         topic = {
             '_id' : unicode(uuid.uuid4()),
             'content' : content,
-            'votes' : 0,
-            'voters' : {},
+            'votes' : 1,
+            'voters' : [self.user['_id'],],
             'user' : self.user['_id'],
             'date' : datetime.datetime.now(),
         }

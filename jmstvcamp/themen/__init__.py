@@ -7,5 +7,4 @@ def setup_handlers(map):
         m.connect(None, '', handler=index.IndexHandler)
         m.connect(None, '/', handler=index.IndexHandler)
         m.connect(None, '/new', handler=neu.NewHandler)
-        m.connect(None, '/{tid}/up', handler=vote.VoteHandler, vote="up")
-        m.connect(None, '/{tid}/down', handler=vote.VoteHandler, vote="down")
+        m.connect(None, '/{tid}/vote', handler=vote.VoteHandler)

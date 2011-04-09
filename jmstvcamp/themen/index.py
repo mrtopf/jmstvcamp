@@ -12,10 +12,10 @@ class IndexHandler(Handler):
     def get(self):
         orig_topics = self.settings.db.topics.find().sort("date",-1)
         topics = []
+        uid = self.userid
         for topic in orig_topics:
             topic['user'] = self.settings.users.get_by_id(topic['user'])
-            topic['show_up'] = topic['voters'][self.user['_id']]<1
-            topic['show_down'] = topic['voters'][self.user['_id']]>-1
+            topic['has_voted'] = uid in topic['voters']
             topics.append(topic)
         
         return self.render(themen=topics)

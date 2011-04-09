@@ -10,19 +10,18 @@ class VoteHandler(Handler):
 
     @logged_in()
     @json()
-    def post(self, tid=None, vote="no"):
+    def post(self, tid=None):
         topic = self.settings.db.topics.find_one({'_id':tid})
-        myvote = topic['voters'][self.user['_id']]
-        if vote=="up" and myvote<1:
-            myvote=myvote+1
-        if vote=="down" and myvote>-1:
-            myvote=myvote-1
-        topic['voters'][self.user['_id']] = myvote
-        # recompute all votes
-        topic['votes'] = reduce(lambda a,b: a+b, topic['voters'].values(), 0)
+        voted = self.userid in topic['voters']
+        if voted:
+            topic['voters'].remove(self.userid)
+        else:
+            topic['voters'].append(self.userid)
+        topic['votes'] = len(topic['voters'])
+          
         self.settings.db.topics.save(topic)
         return {'votes' : topic['votes'], 
-                'myvote' : myvote
+                'myvote' : not voted
                 }
 
 
