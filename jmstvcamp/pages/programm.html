@@ -4,19 +4,21 @@
     <h2>Das Programm...</h2>
     <p>
         gibt es nicht im Vorfeld, denn das Programm wird von den Teilnehmern erst
-        vor Ort definiert, indem jeder, der will, Sessions vorschlagen kann.
+        vor Ort definiert, indem jeder, der möchte, Sessions vorschlagen kann.
     </p>
     <p>
-        Hier kann man allerdings schon Themenvorschläge hinterlassen, um zu schauen,
-        ob generell Interesse besteht und ob man sich vorbereiten sollte. 
+        Auf dieser Seite kann man allerdings schonmal Themenvorschläge hinterlassen, 
+        um zu schauen, ob generell Interesse besteht. Es dient auch als Ideengeber für
+        eigene Sessions.
     </p>
 
-    <h2>Themenvorschläge</h2>
+    <h2 style="margin-top: 30px">Themenvorschläge</h2>
     {% if logged_in %}
     <form id="newthema" method="POST" action="/themen/new">
         <h3 style="margin-left: 3px" >Ihr Vorschlag</h3>
         <textarea cols="75" rows="4" name="content" id="textinp"></textarea>
         <input type="submit" class="button topics" value="Neues Thema vorschlagen" />
+        <a id="markdown-open" href="#">Formatierungshilfe</a>
     </form>
     {% else %}
     <div id="newthema-login">
@@ -28,6 +30,11 @@
     <ul id="themen">
         {% for thema in themen %}
         <li class="thema">
+            {% if thema.mine %}
+            <div class="actions">
+                <a class="thema-edit" href="#" data-id="{{thema._id}}">✎</a>
+            </div>
+            {% endif %}
             <div class="voting">
                 <div class="votes" id="vote-{{thema._id}}">{{thema.votes}}</div>
                 {% if logged_in %}
@@ -36,14 +43,23 @@
                 <div class="vote-login">Bitte loggen Sie sich ein, um zu voten</div>
                 {% endif %}
             </div>
+
+
             <div class="themabody">
-                <div class="byline">
-                    <a href="/user/{{thema.user._id}}">{{thema.user.name|e}}</a>:
+                <div class="text" id="text-{{thema._id}}">
+                    {{thema.fmt}}
                 </div>
-                <div class="text">
-                    {{thema.content|e}}
+                {% if thema.mine %}
+                <form class="form text-edit" id="form-{{thema._id}}" method="post" action="/themen/{{thema._id}}">
+                    <textarea cols="75" rows="10" name="content" id="textinp">{{thema.content|e}}</textarea>
+                    <input type="submit" class="button topics" value="Aktualisieren" />
+                </form>
+                {% endif %}
+                <div class="byline">
+                    eingestellt von <a href="/user/{{thema.user._id}}">{{thema.user.name|e}}</a>, {{thema.user.organization}}
                 </div>
             </div>
+
         </li>
         {% endfor %}
     </ul>
@@ -51,7 +67,6 @@
 <script>
     function update(i, data) {
         $("#vote-"+i).text(data.votes);
-        console.log(data.myvote);
         if (data.myvote) {
             $("#votebutton-"+i).attr("class", "vote active");
         } else {
@@ -69,6 +84,15 @@
                     update(i, data);
                 }
             })
+            return false;
+        });
+        $(".thema-edit").click(function() {
+            var i = $(this).attr("data-id");
+            $("#text-"+i).slideUp(100,
+                function () {
+                    $("#form-"+i).slideDown(100);
+                }
+            );
             return false;
         });
     });
