@@ -36,15 +36,19 @@ class Login(Handler):
 
         user = self.settings.users.get(values['email'])
         if user is None:
+            self.settings.log.info("LOGIN PROBLEM: Ein Benutzer mit dieser E-Mail-Adresse existiert nicht in der Datenbank: %s" %values)
             return self.error("email", "Ein Benutzer mit dieser E-Mail-Adresse existiert nicht in der Datenbank", values)
 
         if user['state']=="created":
+            self.settings.log.info("LOGIN PROBLEM: Der Benutzer ist noch nicht aktiviert: %s" %values)
             return self.error("email", "Dieser Benutzer ist noch nicht aktiviert.", values)
 
         if user['state']!="live":
+            self.settings.log.info("LOGIN PROBLEM: Der Benutzer ist noch nicht aktiviert: %s" %values)
             return self.error("email", "Dieser Benutzer ist noch nicht aktiviert.", values)
 
         if not user.checkpw(values['password']):
+            self.settings.log.info("LOGIN PROBLEM: Das Passwort ist falsch: %s" %values)
             return self.error("password", "Dieses Passwort ist leider falsch.", values)
 
         # user ok, log him in.
