@@ -4,35 +4,12 @@ import copy
 import uuid
 import hashlib
 import datetime
-import markdown
+import utils
 from pymongo.son import SON
 
 formencode.api.set_stdtranslation(domain="FormEncode", languages=["de"])
 
 import emails
-
-import re
-import cgi
-
-md = markdown.Markdown(safe_mode="remove")
-
-lre_string = re.compile(r'(?P<protocal>(^|\s)((http|ftp)://.*?))(\s|$)', re.S|re.M|re.I)
-def linkify(text):
-    def do_sub(m):
-        c = m.groupdict()
-        if c['protocal']:
-            url = m.group('protocal')
-            if url.startswith(' '):
-                prefix = ' '
-                url = url[1:]
-            else:
-                prefix = ''
-            last = m.groups()[-1]
-            if last in ['\n', '\r', '\r\n']:
-                last = '<br>'
-            return '%s<a href="%s">%s</a>%s' % (prefix, url, url, last)
-    return re.sub(lre_string, do_sub, text)
-
 
 class EmailSchema(formencode.Schema):
     email = formencode.All(formencode.validators.Email(), formencode.validators.UnicodeString(not_empty=True))
@@ -67,8 +44,7 @@ class User(SON):
     @property
     def fmt_bio(self):
         """convert plain text bio to HTML"""
-        a = md.convert(self['bio'])
-        return linkify(a)
+        return utils.markdownify(self['bio'])
 
     def log(self, msg):
         entry = {
