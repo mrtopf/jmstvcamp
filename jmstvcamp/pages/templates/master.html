@@ -42,6 +42,14 @@
                     refresh_interval: 5,
                     template: "<div class='tweet'>{avatar}<div class='tweet-content'>{user}{join}{text}{time}</div></div>",
                 })
+                $("#markdown-close").click(function() {
+                    $("#markdown").fadeOut();
+                    return false;
+                });
+                $("#markdown-open").click(function() {
+                    $("#markdown").fadeIn();
+                    return false;
+                });
             });
           }
         });
@@ -77,17 +85,34 @@
             <div id="navblock">
                 <ul id="navcontent">
                     <li><a href="/">Startseite</a></li>
-                    <li><a href="/info.html">Wann und wo</a></li>
+                    <li><a href="/info.html">Info</a></li>
                     <li><a href="/teilnehmer.html">Teilnehmer</a></li>
+                    <li><a href="/themen/">Programm</a></li>
                     <li><a href="/kontakt.html">Kontakt</a></li>
-                    <li><a href="/themen/">Themen</a></li>
+                    <li><a href="/doku/"><b>Dokumentation</b></a></li>
                 </ul>
             </div>
         </nav>
 
+        
         <div id="main">
             <div class="page">
                 <div class="bigcolumn" id="content">
+                    <div id="markdown">
+                        <h2>Formatierungshilfe</h2>
+                        <p>
+                        Sie können in dem Textfeld folgenden Syntax verwenden:
+                        </p>
+                        <table cellspacing="3">
+                            <tr><td><code># Headline</code></td><td> erzeugt eine Überschrift, 1. Grades</td></tr>
+                            <tr><td><code>## Headline</code></td><td> erzeugt eine Überschrift, 2. Grades</td></tr>
+                            <tr><td><code>### Headline</code></td><td> erzeugt eine Überschrift, 3. Grades</td></tr>
+                            <tr><td><code>* Listeneintrag</code></td><td> untereinander erzeugt eine Aufzählungsliste</td></tr>
+                            <tr><td><code>*text*</code></td><td> schreibt den Text fett</td></tr>
+                            <tr><td>eine Leerzeile</td><td> erzeugt einen Absatz</td></tr>
+                        </table>
+                        <a href="#" id="markdown-close">[Popup schliessen]</a>
+                    </div>
                     {% block content %}
                     <div id="block-welcome" class="block start">
                         <h2>Willkommen beim JMStVCamp!</h2>
