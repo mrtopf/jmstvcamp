@@ -22,10 +22,10 @@ class Mailer(object):
 
         msg['Subject'] = subject
         msg['From'] = fromaddr
-        msg['To'] = user['email']
+        msg['To'] = to
 
         self.server.connect()
-        self.server.sendmail(fromaddr, [to], msg)
+        self.server.sendmail(fromaddr, [to], msg.as_string())
         self.server.quit()
 
     def mail(self, fromaddr, to, subject, payload):
