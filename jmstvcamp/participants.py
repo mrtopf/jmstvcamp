@@ -10,10 +10,18 @@ class Participants(Handler):
 
     def get(self):
         db = self.settings.users
-        yes = [u for u in db.get_attend("yes") if not u['waitinglist']]
-        waiting = [u for u in db.get_attend("yes") if u['waitinglist']]
-        maybe = db.get_attend("maybe") 
-        no = db.get_attend("no") 
+        yes = self.settings.users.coll.find(
+                {'attend' : "yes", 'state' : 'live', "waitinglist":False},
+                sort=[('name',1)])
+        waiting = self.settings.users.coll.find(
+                {'attend' : "yes", 'state' : 'live', "waitinglist":True},
+                sort=[('name',1)])
+        maybe = self.settings.users.coll.find(
+                {'attend' : "maybe", 'state' : 'live'},
+                sort=[('name',1)])
+        no = self.settings.users.coll.find(
+                {'attend' : "no", 'state' : 'live'},
+                sort=[('name',1)])
         count = self.settings.maxpeople
         return self.render(yes = yes, maybe = maybe, no=no, waiting=waiting, 
                     count=count)

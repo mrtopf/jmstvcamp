@@ -8,6 +8,7 @@ import formencode
 
 import setup
 import users
+import themen
 import login
 import welcome
 import participants
@@ -53,6 +54,7 @@ class App(Application):
         map.connect(None, "/{page}", handler=Page)
 
         users.setup_handlers(map)
+        themen.setup_handlers(map)
 
 
 

@@ -39,14 +39,14 @@
         </div>
     {% endif %}
     <div id="participants">
-        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes|length}} von {{count}})</h2>
+        <h2 style="margin-bottom: 20px" >Teilnehmer ({{yes.count()}} von {{count}})</h2>
         <ul class="plist">
             {% for u in yes %}
             <li><a href="/user/{{u._id}}" class="{{ 'me' if u._id == user._id  }}">{{u.name}}</a>{% if u.organization %}<span class="orga">, {{u.organization}}</span>{% endif %}
             </li>
             {% endfor %}
         </ul>
-        <h2 style="margin-bottom: 20px" >Warteliste ({{waiting|length}})</h2>
+        <h2 style="margin-bottom: 20px" >Warteliste ({{waiting.count()}})</h2>
         <ul class="plist">
             {% for u in waiting %}
             <li><a href="/user/{{u._id}}" class="{{ 'me' if u._id == user._id  }}">{{u.name}}</a>{% if u.organization %}<span class="orga">, {{u.organization}}</span>{% endif %}

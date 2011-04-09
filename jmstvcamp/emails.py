@@ -44,6 +44,7 @@ class DummyMailer(object):
             'subject': subject,
             'payload': payload
         }
+        print payload
 
 # that you can define the mailer to use by it's name in etc/*.ini
 # this is used in setup.py
