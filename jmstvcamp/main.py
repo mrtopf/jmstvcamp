@@ -13,6 +13,7 @@ import login
 import welcome
 import participants
 import contact
+import doku
 
 class StaticHandler(Handler):
     def get(self, path_info):
@@ -55,6 +56,7 @@ class App(Application):
 
         users.setup_handlers(map)
         themen.setup_handlers(map)
+        doku.setup_handlers(map)
 
 
 
