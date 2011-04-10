@@ -10,7 +10,7 @@ import urlparse
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
-from email.charset import Charset
+from email.charset import Charset, QP
 from email.message import Message
 from email.encoders import encode_quopri
 
@@ -24,26 +24,23 @@ class Mailer(object):
     def _mail(self, fromaddr, to, subject, payload):
 
         # prepare
-        charset = Charset("utf8")
-        subject = Header(subject, "utf-8")
+        charset = Charset("utf-8")
+        charset.header_encoding = QP
+        charset.body_encoding = QP
 
         # create method and set headers
         msg = Message()
-        msg.set_payload(payload, charset)
+        msg.set_payload(payload.encode("utf8"))
+        msg.set_charset(charset)
         msg['Subject'] = subject
         msg['From'] = fromaddr
         msg['To'] = to
 
-        #encode_quopri(msg)
-
         #print msg.as_string()
 
-        #msg = MIMEText(payload.encode("utf8"), 'plain', charset)
-        #msg.set_charset(charset)
-
-        #self.server.connect()
-        #self.server.sendmail(fromaddr, [to], msg.as_string())
-        #self.server.quit()
+        self.server.connect()
+        self.server.sendmail(fromaddr, [to], msg.as_string())
+        self.server.quit()
 
     def mail(self, fromaddr, to, subject, payload):
         return self._mail(fromaddr, to, subject, payload)
