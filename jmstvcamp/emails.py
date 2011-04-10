@@ -9,6 +9,10 @@ EMail adapters
 import urlparse
 import smtplib
 from email.mime.text import MIMEText
+from email.header import Header
+from email.charset import Charset
+from email.message import Message
+from email.encoders import encode_quopri
 
 
 class Mailer(object):
@@ -18,15 +22,28 @@ class Mailer(object):
         self.server = smtplib.SMTP()
 
     def _mail(self, fromaddr, to, subject, payload):
-        msg = MIMEText(payload.encode("utf8"), 'plain', 'utf8')
 
+        # prepare
+        charset = Charset("utf8")
+        subject = Header(subject, "utf-8")
+
+        # create method and set headers
+        msg = Message()
+        msg.set_payload(payload, charset)
         msg['Subject'] = subject
         msg['From'] = fromaddr
         msg['To'] = to
 
-        self.server.connect()
-        self.server.sendmail(fromaddr, [to], msg.as_string())
-        self.server.quit()
+        #encode_quopri(msg)
+
+        #print msg.as_string()
+
+        #msg = MIMEText(payload.encode("utf8"), 'plain', charset)
+        #msg.set_charset(charset)
+
+        #self.server.connect()
+        #self.server.sendmail(fromaddr, [to], msg.as_string())
+        #self.server.quit()
 
     def mail(self, fromaddr, to, subject, payload):
         return self._mail(fromaddr, to, subject, payload)
