@@ -25,25 +25,27 @@ class Mailer(object):
 
         # prepare
         charset = Charset("utf8")
+        print charset.body_encode
         subject = Header(subject, "utf-8")
 
         # create method and set headers
         msg = Message()
-        msg.set_payload(payload, charset)
+        msg.set_payload(payload.encode("utf8"), charset)
         msg['Subject'] = subject
         msg['From'] = fromaddr
         msg['To'] = to
 
         #encode_quopri(msg)
 
-        #print msg.as_string()
+        print msg.as_string()
+        
 
         #msg = MIMEText(payload.encode("utf8"), 'plain', charset)
         #msg.set_charset(charset)
 
-        #self.server.connect()
-        #self.server.sendmail(fromaddr, [to], msg.as_string())
-        #self.server.quit()
+        self.server.connect()
+        self.server.sendmail(fromaddr, [to], msg.as_string())
+        self.server.quit()
 
     def mail(self, fromaddr, to, subject, payload):
         return self._mail(fromaddr, to, subject, payload)
