@@ -63,7 +63,7 @@ class Logout(Handler):
 
     def get(self):
         """logout"""
-        url = urlparse.urljoin(self.settings.virtual_host,"/")
+        url = urlparse.urljoin(self.settings.virtual_host,"/?msg=4")
         res = werkzeug.redirect(location=url)
         res.delete_cookie("u")
         return res
