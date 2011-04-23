@@ -13,5 +13,6 @@ def setup_handlers(map):
         m.connect(None, '/newpw', handler=code.NewPassword)
         m.connect(None, '/profile', handler=profile.Profile)
         m.connect(None, '/edit', handler=profile.Edit)
+        m.connect(None, '/pw', handler=profile.Password)
         m.connect(None, '/{username}', handler=profile.Profile)
 

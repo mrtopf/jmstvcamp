@@ -29,7 +29,6 @@ class Profile(Handler):
 
 class ProfileSchema(formencode.Schema):
     name = formencode.All(formencode.validators.UnicodeString(not_empty=True))
-    #attend = formencode.validators.OneOf(['yes','no','maybe'])
     organization = formencode.All(formencode.validators.UnicodeString())
     homepage = formencode.validators.URL()
     bio = formencode.validators.UnicodeString()
@@ -54,6 +53,33 @@ class Edit(Handler):
 
         user = self.settings.users.save(self.user, values) 
         # TODO: Add flash message
-        return self.redirect("/user/profile")
+        return self.redirect("/user/profile?msg=3")
 
+
+class PasswordSchema(formencode.Schema):
+    password = formencode.All(formencode.validators.String(not_empty=True, min=5))
+    password2 = formencode.All(formencode.validators.String(not_empty=True, min=5))
+    chained_validators = [formencode.validators.FieldsMatch('password', 'password2')]
+
+class Password(Handler):
+    """let the user change the password"""
+
+    template="pwform.html"
+
+    @logged_in()
+    def get(self):
+        return self.render(errors={}, values=self.user)
+
+    @logged_in()
+    def post(self):
+        """update password"""
+        try:
+            values = PasswordSchema.to_python(self.request.form)
+        except formencode.validators.Invalid, e:
+            return self.render(errors=e.error_dict, values=self.request.form)
+        
+        self.user.set_pw(values['password'])
+        user = self.settings.users.save(self.user) 
+        # TODO: Add flash message
+        return self.redirect("/user/profile?msg=2")
 
