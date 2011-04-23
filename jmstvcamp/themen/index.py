@@ -29,4 +29,4 @@ class IndexHandler(Handler):
             topic['fmt'] = utils.markdownify(topic['content'])
             topics.append(topic)
         
-        return self.render(themen=topics)
+        return self.render(themen=topics, order=sort_order)
