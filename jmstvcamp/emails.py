@@ -32,7 +32,7 @@ class Mailer(object):
         msg = Message()
         msg.set_payload(payload.encode("utf8"))
         msg.set_charset(charset)
-        msg['Subject'] = subject
+        msg['Subject'] = Header(subject, "utf8")
         msg['From'] = fromaddr
         msg['To'] = to
 

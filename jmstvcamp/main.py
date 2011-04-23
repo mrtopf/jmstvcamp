@@ -33,8 +33,10 @@ class Page(Handler):
 
 class Fehler(Handler):
     
+    @html
     def get(self):
-        peter()
+        self.settings.users.move_up()
+        return "ok"
 
 class App(Application):
 

@@ -1,0 +1,85 @@
+//body, html { text-align: center; width: 100%; height: 100%; margin: 0; padding: 0; background-color: {color:Background}; font-family: Arial, Helvetica, sans-serif; color: {color:Text}; }
+body,html { line-height: 1; color: black; background: white; font-size: 16px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; line-height: 1.4em; background: white url('http://jmstvcamp.de/img/bg.gif?1300033400') repeat; }
+
+p { margin-bottom: 10px; }
+img { border-style: none; }
+a { color: #335588; text-decoration: none; }
+a[name] { color: {color:#acf}; text-decoration: none; }
+
+header { display: block; margin: 0; overflow: auto; }
+header #loginbox { font-size: 90%; }
+#headercontent, #footercontent { margin: 0 auto; width: 960px; }
+
+#logo { padding-top: 10px; padding-bottom: 20px; margin: 0; float: left; width: 600px; }
+#socialbox { margin-top: 50px; }
+
+h2, h3 { font-family: Arial, Helvetica, sans-serif; font-size: 22px; display: block; font-style: normal; font-weight: bold; text-shadow: none; text-decoration: none; text-transform: uppercase; letter-spacing: 0.053em; word-spacing: 0em; line-height: 1.2; color: #333333; margin-bottom: 0px; margin-top: 10px; }
+
+h3 { font-size: 14px; color: #555555; }
+
+footer { display: block; border-top: 5px solid #333333; padding-top: 10px; margin-top: 0px; margin-bottom: 20px; font-size: 80%; }
+footer #footercontent { color: #555555; }
+
+#main { margin: 0; padding-bottom: 20px; background: url(http://jmstvcamp.de/img/fleck.png) no-repeat top left; }
+
+        article header h1 a { color: {color:Post Title}; }
+        article header h1 a:hover { color: {color:Lighter Text}; text-decoration: none; }
+
+        header#page_header hgroup { margin-top: 40px; {color:Lighter Text}; display: block; }
+        header#page_header hgroup a { color: {color:Lighter Text}; }
+        header#page_header hgroup h2 { margin: 10px 0 30px; font-size: 1.4em; font-weight: normal; color: {color:Lighter Text}; letter-spacing: 0px;}
+
+      nav#navigation ul li a.current { color: {color:Lighter Text}; }
+
+      section#extra_links h1 span { letter-spacing: 0; display: block; font-size: 10px; font-weight: normal; color: {color:Lighter Text}; }
+      section#extra_links ul { color: {color:Lighter Text}; font-size: 10px; }
+
+      form.search input.text { font-size: 12px; padding: 2px 2px 2px 20px; border: 1px solid #ccc; background: {color:Background} url('/images/icons/search16.png') no-repeat 3px 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; }
+
+      aside#sidebar { float: right; width: 175px; margin-top: 20px; font-size: 1.2em; color: {color:Lighter Text}; }
+      aside#sidebar section h1 { font-size: 11px; font-weight: normal; color: {color:Lighter Text}; letter-spacing: 0; }
+      aside#sidebar section ul li { list-style: none; color: {color:Lighter Text}; }
+
+      section#statistics { font-size: 10px; color: {color:Lighter Text}; }
+      section#statistics strong { color: {color:Text}; }
+      h2#archive_list {margin-top: 0px; color: #111;}
+      section#archives {display:block;}
+      section#archives div.inner {margin-left:10px;line-height:1.5em;}
+      section#archives div.year {margin-top:5px;margin-bottom:5px;}
+
+      article header aside.sms { font-size: 11px; color: {color:Lighter Text}; }
+
+      div.editbox a { color: {color:Lighter Text}; }
+        div.editbox a:hover { color: {color:Link}; }
+
+      article time a { font-size: 14px; color: {color:Date}; }
+
+      footer section.author { width: 500px; margin-left: 155px; float: none; margin-bottom: 15px; }
+      footer section.author h1 { font-size: 10px; font-weight: normal; color: {color:Lighter Text}; margin: 0 0 5px; }
+      footer section.author h1 a { color: {color:Lighter Text}; }
+      footer section.author:hover h1 a { color: {color:Link}; text-decoration: none; }
+
+        div.comment_label { float: left; width: 130px; color: {color:Date}; font-size: 14px; padding-top: 2px; margin-top: 0px; text-align: right; }
+        div.comment_spacer { float: left; width: 130px; color: {color:Lighter Text}; font-size: 14px; padding-top: 14px; text-align: right; display: block; }
+        div.comment_date { color: {color:Date}; font-size: 14px; }
+        div.commentunit { margin: 10px 0px; color: {color:Text}; }
+
+      footer section.locations h1 { font-size: 11px; font-weight: normal; color: {color:Lighter Text}; line-height: 21px; margin-top: 0px; }
+        .pagination a:hover, .pagination a:active { border: 1px solid #ca9d00; color: {color:Link}; }
+        .pagination span.current { padding: 2px 5px; margin: 2px; font-weight: bold; border: 1px solid {color:Link}; background-color: {color:Link}; color: {color:Background}; 
+}
+
+        input, select, textarea { color: {color:Post Title}; font-size: 1.6em; font-family: "Lucida Grande", sans-serif;
+            line-height:1.3em !important; padding: 5px; }
+        input[type='text'], input[type='password'], select, textarea { background-color: {color:Background}; border: 1px solid #ccc; }
+        input[type='button'], input[type='submit'] { height: 2em; font-size: 1.4em; color: {color:Post Title}; margin-top: 10px; }
+
+        #rss { margin: 10px 0px; }
+
+      footer section.share, footer section.tags, footer section.locations { margin-bottom: 15px; }
+      footer section.share { margin-bottom: 18px; float: right; width: auto; margin: 10px 0 0; }
+      .p_response_widget { float: left; }
+      .p_response_container { clear: both; }
+
+      div.posterous_tweet_button { margin-right: 0; }
+
