@@ -41,6 +41,11 @@ class User(SON):
         self['password'] = hashlib.new("md5",pw).hexdigest()
         return pw
 
+    def set_pw(self, pw):
+        """store a password"""
+        self['password'] = hashlib.new("md5",pw).hexdigest()
+        return pw
+
     @property
     def fmt_bio(self):
         """convert plain text bio to HTML"""
@@ -176,6 +181,13 @@ class Users(object):
     def get_attend(self, attend="yes"):
         """return a list by attendance status"""
         q = {'attend' : attend, 'state' : 'live'}
+        res = self.coll.find(q, sort=[('name',1)], as_class=User)
+        return res
+
+    @property
+    def all(self):
+        """return a list of all active participants or interested ones"""
+        q = {'state' : 'live'}
         res = self.coll.find(q, sort=[('name',1)], as_class=User)
         return res
 
