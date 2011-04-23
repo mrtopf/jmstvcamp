@@ -26,6 +26,11 @@
         <a href="/login">zum Login</a>
     </div>
     {% endif %}
+    <div id="sorting">
+        Sortierung nach: 
+        <a href="/themen/?sort=votes">Votes</a>
+        <a href="/themen/?sort=date">Datum</a>
+    </div>
 
     <ul id="themen">
         {% for thema in themen %}
@@ -56,7 +61,11 @@
                 </form>
                 {% endif %}
                 <div class="byline">
-                    eingestellt von <a href="/user/{{thema.user._id}}">{{thema.user.name|e}}</a>, {{thema.user.organization}}
+                    eingestellt von <a href="/user/{{thema.user._id}}">{{thema.user.name|e}}</a>
+                    {% if thema.user.organization %}
+                    , {{thema.user.organization}}
+                    {% endif %}
+                    am {{thema.date.strftime("%d.%m.%Y")}}
                 </div>
             </div>
 

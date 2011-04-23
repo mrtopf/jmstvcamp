@@ -11,7 +11,15 @@ class IndexHandler(Handler):
     template="programm.html"
 
     def get(self):
-        orig_topics = self.settings.db.topics.find().sort("date",-1)
+        sort_order = self.request.args.get("sort","date")
+        if sort_order == "favs": 
+            orig_topics1 = self.settings.db.topics.find({'voters': {'$in':self.userid}}).sort("date",-1)
+            orig_topics2 = self.settings.db.topics.find({'voters': {'$in':self.userid}}).sort("date",-1)
+            orig_topics = orig_topics1 + orig_topics2
+        else:
+            if sort_order not in ('votes', 'date'):
+                sort_order = "date"
+            orig_topics = self.settings.db.topics.find().sort(sort_order,-1)
         topics = []
         uid = self.userid
         for topic in orig_topics:
