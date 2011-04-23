@@ -1,3 +1,5 @@
+#encoding=utf8
+
 import os
 import copy
 from paste.fileapp import FileApp
@@ -41,6 +43,13 @@ class Handler(object):
         ticket = auth_tkt.AuthTicket(self.settings.shared_secret, _id, "127.0.0.1")
         return ticket.cookie_value()
 
+    MESSAGES = {
+        '1' : u'Sie sind nun eingeloggt.',
+        '2' : u'Ihr Passwort wurde geändert.',
+        '3' : u'Ihr Profil wurde gespeichert.',
+        '4' : u'Sie sind nun ausgeloggt.'
+    }
+
     @html
     def render(self, tmplname=None, **kwargs):
         """render a template. If the ``tmplname`` is given, it will render
@@ -52,6 +61,9 @@ class Handler(object):
         data['logged_in'] = self.user is not None
         data['user'] = self.user
         data['full'] = self.settings.users.get_attend().count()>=self.settings.maxpeople
+        msgno = self.request.values.get("msg", None)
+        if msgno is not None:
+            data['msg'] = self.MESSAGES.get(msgno,None)
         tmpl = self.settings.pts.get_template(tmplname)
         return tmpl.render(**data)
 

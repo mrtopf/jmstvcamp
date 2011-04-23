@@ -65,7 +65,7 @@
                 <h1 id="logo"><a href="/"><img src="/img/logo.png" /></a></h1>
                 <aside id="loginbox">
                     {% if logged_in %}
-                        <a href="/user/profile">{{user.name|e}}</a>|
+                        <a href="/user/profile">{{user.name|e}}</a> |
                         <a href="/logout">Ausloggen</a>
                     {% else %}
                         <a href="/login">Login</a> |
@@ -82,7 +82,7 @@
                 </aside>
             </div>
         </header>
-        <nav>
+        <nav id="mainnav">
             <div id="navblock">
                 <ul id="navcontent">
                     <li><a href="/">Startseite</a></li>
@@ -94,10 +94,27 @@
                 </ul>
             </div>
         </nav>
+        {% if logged_in %}
+        <nav id="usernav">
+            <div id="navblock">
+                <ul id="navcontent">
+                    <li><a href="/user/profile">Zu meinem Profil</a></li>
+                    <li><a href="/user/edit">Profil bearbeiten</a></li>
+                    <li><a href="/user/pw">Passwort ändern</a></li>
+                    <li><a href="/teilnehmer.html">Teilnahmestatus bearbeiten</a></li>
+                    <li><a href="/logout">Ausloggen</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% endif %}
 
         
         <div id="main">
             <div class="page">
+                {% if msg %}
+                <div id="message">{{msg}}</div>
+                {% endif %}
+
                 <div class="bigcolumn" id="content">
                     <div id="markdown">
                         <h2>Formatierungshilfe</h2>
