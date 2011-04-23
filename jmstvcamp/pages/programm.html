@@ -26,11 +26,11 @@
         <a href="/login">zum Login</a>
     </div>
     {% endif %}
-    <div id="sorting">
+    <nav id="sorting">
         Sortierung nach: 
-        <a href="/themen/?sort=votes">Votes</a>
-        <a href="/themen/?sort=date">Datum</a>
-    </div>
+        <a class="{{'active' if order=='votes'}}" href="/themen/?sort=votes">Stimmen</a>
+        <a class="{{'active' if order=='date'}}" href="/themen/?sort=date">Datum</a>
+    </nav>
 
     <ul id="themen">
         {% for thema in themen %}
