@@ -1,0 +1,26 @@
+{% extends "templates/master.html" %}
+{% block content %}
+    <div id="editform-block">
+        <h2 style="margin-bottom: 20px" >Passwort ändern</h2>
+        <form id="editform" action="/user/pw" method="POST" class="form">
+            <div class="field {{'error' if errors.password}}">
+                <label for="name">Neues Passwort</label>
+                <input type="password" id="password" name="password" size="30" maxlength="255" autofocus>
+                {% if errors.password %}
+                    <span class="error">{{errors.password}}</span>
+                {% endif %}
+            </div>
+            <div class="field {{'error' if errors.password}}">
+                <label for="name">Passwort wiederholen</label>
+                <input type="password" id="password2" name="password2" size="30" maxlength="255">
+                <span class="help">Bitte wiederholen Sie Ihre Passwort-Eingabe hier.</span>
+                {% if errors.password2 %}
+                    <span class="error">{{errors.password2}}</span>
+                {% endif %}
+            </div>
+
+            <input type="submit" class="button block" value="Passwort ändern" />
+
+        </form>
+    </div>
+{% endblock %}
