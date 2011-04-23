@@ -99,7 +99,7 @@ class Users(object):
         self.coll.save(user)
         return user
 
-    def save(self, user, values):
+    def save(self, user, values={}):
         """save a user"""
         # create a new user copy
         new_user = User(copy.deepcopy(user.to_dict()))
