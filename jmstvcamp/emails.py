@@ -36,8 +36,6 @@ class Mailer(object):
         msg['From'] = fromaddr
         msg['To'] = to
 
-        #print msg.as_string()
-
         self.server.connect()
         self.server.sendmail(fromaddr, [to], msg.as_string())
         self.server.quit()
@@ -100,8 +98,6 @@ class UserEMailAdapter(Adapter):
                 subject, 
                 payload
         )
-
-        #self.settings.mailer.mail(fromaddr, user['email'], msg.as_string())
 
     def send_optin(self):
         """send the opt-in message to the user"""
