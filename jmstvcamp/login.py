@@ -48,7 +48,7 @@ class Login(Handler):
             return self.error("email", "Dieser Benutzer ist noch nicht aktiviert.", values)
 
         if not user.checkpw(values['password']):
-            self.settings.log.info("LOGIN PROBLEM: Das Passwort ist falsch für user: %s" %values['email'])
+            self.settings.log.info("LOGIN PROBLEM: Das Passwort ist falsch, email: %s" %values['email'])
             return self.error("password", "Dieses Passwort ist leider falsch.", values)
 
         # user ok, log him in.
